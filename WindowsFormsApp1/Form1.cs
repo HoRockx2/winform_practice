@@ -125,6 +125,8 @@ namespace WindowsFormsApp1
         private void OnTextChanged(object sender, EventArgs e)
         {
             Logger.Info((sender is TextBox).ToString());
+
+            label1.Text = (sender as TextBox).Text;
         }
     }
 }

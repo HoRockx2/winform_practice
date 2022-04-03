@@ -36,6 +36,7 @@ namespace WindowsFormsApp1
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.searchInputField = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,11 +80,24 @@ namespace WindowsFormsApp1
             this.searchInputField.TabStop = false;
             this.searchInputField.TextChanged += new System.EventHandler(this.OnTextChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(0, 21);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(10);
+            this.label1.Size = new System.Drawing.Size(60, 34);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.searchInputField);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -102,6 +116,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.TextBox searchInputField;
+        private System.Windows.Forms.Label label1;
     }
 }
 
