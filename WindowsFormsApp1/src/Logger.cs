@@ -12,7 +12,12 @@ namespace WindowsFormsApp1
     {
         static public void Info(string log = "", [CallerMemberName] string caller = "", [CallerLineNumber] int line = 0)
         {
-            Debug.WriteLine($"[{caller}] ({line}): log");
+            Debug.WriteLine($"[{caller}] ({line}): {log}");
+        }
+
+        static public void Start([CallerMemberName] string caller = "", [CallerLineNumber] int line = 0)
+        {
+            Debug.WriteLine($"[{caller}] ({line}): Start");
         }
     }
 }
