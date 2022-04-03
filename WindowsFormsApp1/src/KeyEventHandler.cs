@@ -13,10 +13,16 @@ namespace WindowsFormsApp1
 
             int modifiers = GetModifiers(key); // maybe, it means special keys such as ctrl, alt, shift and so on
 
+            Logger.Info(modifiers.ToString());
+
             Keys k = RemoveModifiersFromKey(key);
 
+            Logger.Info(k.ToString());
+
             int keyId = form.GetHashCode();
-            InteropUser32.RegisterHotKey((IntPtr)form.Handle, keyId, (int)modifiers, (int)k);
+            var result =InteropUser32.RegisterHotKey((IntPtr)form.Handle, keyId, (int)modifiers, (int)k);
+
+            Logger.Info($"Key RegisterHotkey result is : {result}");
         }
 
         public void UnregisterHotKey(Form form)
