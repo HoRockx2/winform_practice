@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     {
         private bool isNeedToExit = false;
         private KeyEventHandler keyEventHandler = null;
-
+        private Fetch fetch;
 
         public Form1()
         {
@@ -24,9 +24,9 @@ namespace WindowsFormsApp1
             keyEventHandler = new KeyEventHandler();
             RegisterHotKey();
 
-            Application.ApplicationExit += Application_ApplicationExit;
+            fetch = new Fetch();
 
-            
+            Application.ApplicationExit += Application_ApplicationExit;
         }
 
         private void Application_ApplicationExit(object sender, EventArgs e) // it seems that it's not invoked when Envrinment.Exit(0)
@@ -127,6 +127,13 @@ namespace WindowsFormsApp1
             Logger.Info((sender is TextBox).ToString());
 
             label1.Text = (sender as TextBox).Text;
+        }
+
+        private void OnClick(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            fetch.FetchData();
         }
     }
 }

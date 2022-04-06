@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Fetch.cs" />
     <Compile Include="src\interop\InteropUser32.cs" />
     <Compile Include="src\KeyEventHandler.cs" />
     <Compile Include="src\Logger.cs" />
