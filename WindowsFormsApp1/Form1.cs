@@ -23,19 +23,31 @@ namespace WindowsFormsApp1
 
             keyEventHandler = new KeyEventHandler();
             RegisterHotKey();
+
+            Application.ApplicationExit += Application_ApplicationExit;
+
+            
+        }
+
+        private void Application_ApplicationExit(object sender, EventArgs e) // it seems that it's not invoked when Envrinment.Exit(0)
+        {
+            Logger.Start();
+
+            keyEventHandler.UnregisterHotKey(this);
+            notifyIcon.Dispose();
         }
 
         private void RegisterHotKey()
         {
             Logger.Start();
 
-            Keys key = Keys.Space & Keys.Control & Keys.Shift;
+            Keys key = Keys.Space | Keys.Control | Keys.Shift;
             keyEventHandler.RegisterHotKey(this, key);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            searchInputField.Select();
         }
 
         protected override void WndProc(ref Message m)
@@ -47,18 +59,27 @@ namespace WindowsFormsApp1
             }
             else if(m.Msg == InteropUser32.WM_HOTKEY)
             {
-                int keyCode = Utils.HIWORD(m.LParam);
-                
-                if((InteropUser32.MOD_CONTROL | InteropUser32.MOD_SHIFT) == Utils.LOWORD(m.LParam))
-                {
-                    if((int)Keys.Space == keyCode)
-                    {
-                        ShowWinForm();
-                    }
-                }
+                ProcessHotKey(m);
             }
 
             base.WndProc(ref m);
+        }
+
+        private void ProcessHotKey(Message m)
+        {
+            Logger.Start();
+
+            int keyCode = Utils.HIWORD(m.LParam);
+
+            if ((InteropUser32.MOD_CONTROL | InteropUser32.MOD_SHIFT) == Utils.LOWORD(m.LParam))
+            {
+                if ((int)Keys.Space == keyCode)
+                {
+                    Logger.Info("Catch HotKey!");
+
+                    ShowWinForm();
+                }
+            }
         }
 
         private void ShowWinForm()
@@ -78,9 +99,6 @@ namespace WindowsFormsApp1
             if (isNeedToExit)
             {
                 Logger.Info("Exit application");
-
-                keyEventHandler.UnregisterHotKey(this);
-                notifyIcon.Dispose();
                 e.Cancel = false;
             }
 
@@ -102,6 +120,13 @@ namespace WindowsFormsApp1
                     ShowWinForm();
                     break;
             }
+        }
+
+        private void OnTextChanged(object sender, EventArgs e)
+        {
+            Logger.Info((sender is TextBox).ToString());
+
+            label1.Text = (sender as TextBox).Text;
         }
     }
 }
