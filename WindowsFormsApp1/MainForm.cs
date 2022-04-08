@@ -11,13 +11,13 @@ using WindowsFormsApp1.interop;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private bool isNeedToExit = false;
         private KeyEventHandler keyEventHandler = null;
         private Fetch fetch;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -134,6 +134,26 @@ namespace WindowsFormsApp1
             Logger.Start();
 
             fetch.FetchData();
+        }
+
+        private void OnDetailPopupClick(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            var detailPopup = new DetailPopup();
+            DialogResult dialogResult = detailPopup.ShowDialog();
+
+            if(dialogResult == DialogResult.OK)
+            {
+                Logger.Info("dialog result is ok");
+            }
+            else if(dialogResult == DialogResult.Cancel)
+            {
+                Logger.Info("dialog result is cancel");
+            }
+
+            Logger.Info("do dispose popup");
+            detailPopup.Dispose();
         }
     }
 }
