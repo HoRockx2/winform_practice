@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.interop;
+using WindowsFormsApp1.model;
 
 namespace WindowsFormsApp1
 {
@@ -16,6 +17,8 @@ namespace WindowsFormsApp1
         private bool isNeedToExit = false;
         private KeyEventHandler keyEventHandler = null;
         private Fetch fetch;
+        private List<DetailModel> commandList = new List<DetailModel>();
+        private FileIO fileIO = new FileIO();
 
         public MainForm()
         {
@@ -146,6 +149,7 @@ namespace WindowsFormsApp1
             if(dialogResult == DialogResult.OK)
             {
                 Logger.Info("dialog result is ok");
+                AddCommandList(detailPopup.ResultModel);
             }
             else if(dialogResult == DialogResult.Cancel)
             {
@@ -154,6 +158,17 @@ namespace WindowsFormsApp1
 
             Logger.Info("do dispose popup");
             detailPopup.Dispose();
+        }
+
+        private async void AddCommandList(DetailModel newModel)
+        {
+            Logger.Start();
+
+            commandList.Add(newModel);
+            await fileIO.SaveDataAsync(commandList);
+
+            ResetMainFormUI();
+            UpdateDictionary();
         }
     }
 }

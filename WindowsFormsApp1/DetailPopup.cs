@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.model;
 
 namespace WindowsFormsApp1
 {
     public partial class DetailPopup : Form
     {
         private List<TextBox> commandTextBoxList = new List<TextBox>();
+
+        public DetailModel ResultModel { get; private set; }
 
         public DetailPopup()
         {
@@ -49,6 +52,14 @@ namespace WindowsFormsApp1
             Logger.Start();
 
             AddCommandTextBox();
+        }
+
+        private void OnClickOK(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            ResultModel = new DetailModel(titleTextBox.Text, contentTextBox.Text);
+
         }
     }
 }

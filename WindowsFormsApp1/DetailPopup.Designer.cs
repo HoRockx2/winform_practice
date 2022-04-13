@@ -83,6 +83,7 @@ namespace WindowsFormsApp1
             // 
             // commandList
             // 
+            this.commandList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.commandList.Location = new System.Drawing.Point(12, 200);
             this.commandList.Name = "commandList";
             this.commandList.Size = new System.Drawing.Size(501, 100);
@@ -97,6 +98,7 @@ namespace WindowsFormsApp1
             this.button1.TabIndex = 7;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.OnClickOK);
             // 
             // button2
             // 
