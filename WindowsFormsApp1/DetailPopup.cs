@@ -58,8 +58,15 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            ResultModel = new DetailModel(titleTextBox.Text, contentTextBox.Text);
+            var commandList = new List<string>();
 
+            foreach(var commandTextBox in commandTextBoxList)
+            {
+                commandList.Add(commandTextBox.Text);
+            }
+
+            ResultModel = commandList.Count > 0 ? new DetailModel(titleTextBox.Text, contentTextBox.Text, commandList) :
+                new DetailModel(titleTextBox.Text, contentTextBox.Text);
         }
     }
 }

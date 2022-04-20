@@ -11,30 +11,34 @@ namespace WindowsFormsApp1
 {
     public class FileIO
     {
-        private const string path = @"commands.dat";
+        private const string filePath = @"commands.dat";
 
         public FileIO()
         {
             Logger.Start();   
         }
 
-        public Task SaveDataAsync(List<DetailModel> commandList)
+        public async void SaveDataAsync(List<DetailModel> commandList)
         {
             Logger.Start();
 
-            Task task = Task.Run(() =>
+            await Task.Run(() =>
             {
                 string output = JsonConvert.SerializeObject(commandList);
                 Logger.Info(output);
 
-
-                using (StreamWriter sw = File.CreateText(path))
+                using (StreamWriter sw = File.CreateText(filePath))
                 {
                     sw.Write(output);
                 }
             });
+        }
 
-            return task;
+        public string LoadData()
+        {
+            Logger.Start();
+
+            return File.ReadAllText(filePath);
         }
     }
 }

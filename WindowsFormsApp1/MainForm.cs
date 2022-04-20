@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.interop;
 using WindowsFormsApp1.model;
+using Newtonsoft.Json;
 
 namespace WindowsFormsApp1
 {
@@ -28,8 +29,32 @@ namespace WindowsFormsApp1
             RegisterHotKey();
 
             fetch = new Fetch();
+            LoadData();
+            PrintCommandList();
 
             Application.ApplicationExit += Application_ApplicationExit;
+        }
+
+        private void LoadData()
+        {
+            Logger.Start();
+
+            var stringData = fileIO.LoadData();
+            commandList = JsonConvert.DeserializeObject<List<DetailModel>>(stringData);
+        }
+
+        private void PrintCommandList()
+        {
+            var strBuilder = new StringBuilder();
+
+            strBuilder.AppendLine($"{commandList.Count} commands are exist!");
+
+            foreach(var detailModel in commandList)
+            {
+                strBuilder.AppendLine(JsonConvert.SerializeObject(detailModel));
+            }
+
+            Logger.Info(strBuilder.ToString());
         }
 
         private void Application_ApplicationExit(object sender, EventArgs e) // it seems that it's not invoked when Envrinment.Exit(0)
@@ -160,15 +185,15 @@ namespace WindowsFormsApp1
             detailPopup.Dispose();
         }
 
-        private async void AddCommandList(DetailModel newModel)
+        private void AddCommandList(DetailModel newModel)
         {
             Logger.Start();
 
             commandList.Add(newModel);
-            await fileIO.SaveDataAsync(commandList);
+            fileIO.SaveDataAsync(commandList);
 
-            ResetMainFormUI();
-            UpdateDictionary();
+            //ResetMainFormUI();
+            //UpdateDictionary();
         }
     }
 }
