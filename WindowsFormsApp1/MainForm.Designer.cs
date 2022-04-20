@@ -36,10 +36,13 @@ namespace WindowsFormsApp1
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.searchInputField = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.textChangedDisplay = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.commandListBox = new System.Windows.Forms.ListBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip
@@ -82,21 +85,20 @@ namespace WindowsFormsApp1
             this.searchInputField.TabStop = false;
             this.searchInputField.TextChanged += new System.EventHandler(this.OnTextChanged);
             // 
-            // label1
+            // textChangedDisplay
             // 
-            this.label1.AutoSize = true;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(0, 21);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(10);
-            this.label1.Size = new System.Drawing.Size(60, 34);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.textChangedDisplay.AutoSize = true;
+            this.textChangedDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.textChangedDisplay.Location = new System.Drawing.Point(305, 15);
+            this.textChangedDisplay.Name = "textChangedDisplay";
+            this.textChangedDisplay.Padding = new System.Windows.Forms.Padding(10);
+            this.textChangedDisplay.Size = new System.Drawing.Size(60, 34);
+            this.textChangedDisplay.TabIndex = 2;
+            this.textChangedDisplay.Text = "label1";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(608, 344);
+            this.button1.Location = new System.Drawing.Point(389, 26);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -106,7 +108,7 @@ namespace WindowsFormsApp1
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(608, 392);
+            this.button2.Location = new System.Drawing.Point(342, 63);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 23);
             this.button2.TabIndex = 4;
@@ -114,20 +116,42 @@ namespace WindowsFormsApp1
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnDetailPopupClick);
             // 
+            // commandListBox
+            // 
+            this.commandListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commandListBox.FormattingEnabled = true;
+            this.commandListBox.ItemHeight = 12;
+            this.commandListBox.Location = new System.Drawing.Point(0, 21);
+            this.commandListBox.Name = "commandListBox";
+            this.commandListBox.Size = new System.Drawing.Size(800, 429);
+            this.commandListBox.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.textChangedDisplay);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 350);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 100);
+            this.panel1.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.commandListBox);
             this.Controls.Add(this.searchInputField);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,9 +164,11 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.TextBox searchInputField;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label textChangedDisplay;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ListBox commandListBox;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

@@ -32,7 +32,20 @@ namespace WindowsFormsApp1
             LoadData();
             PrintCommandList();
 
+
             Application.ApplicationExit += Application_ApplicationExit;
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            Logger.Start();
+
+            base.OnShown(e);
+
+            if(searchInputField.Text.Length == 0)
+            {
+                ShowAllCommandList();
+            }
         }
 
         private void LoadData()
@@ -154,7 +167,26 @@ namespace WindowsFormsApp1
         {
             Logger.Info((sender is TextBox).ToString());
 
-            label1.Text = (sender as TextBox).Text;
+            string searchText = (sender as TextBox).Text;
+
+            textChangedDisplay.Text = searchText;
+            
+            if(searchText.Length == 0)
+            {
+                ShowAllCommandList();
+            }
+        }
+
+        private void ShowAllCommandList()
+        {
+            Logger.Info();
+
+            commandListBox.Items.Clear();
+            
+            foreach(var command in commandList)
+            {
+                commandListBox.Items.Add(command.Title);
+            }
         }
 
         private void OnClick(object sender, EventArgs e)

@@ -8,9 +8,9 @@ namespace WindowsFormsApp1.model
 {
     public class DetailModel
     {
-        public string Title { get; private set; }
-        public string Description { get; private set; }
-        public List<string> Commands { get; private set; } = new List<string>();
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public List<string> Commands { get; set; } = new List<string>();
 
         public DetailModel()
         {
@@ -23,7 +23,6 @@ namespace WindowsFormsApp1.model
 
             Title = title;
             Description = description;
-
         }
 
         public DetailModel(string title, string description, List<string> commands)
