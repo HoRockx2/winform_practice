@@ -40,8 +40,12 @@ namespace WindowsFormsApp1
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.commandListBox = new System.Windows.Forms.ListBox();
+            this.bottomPanel = new System.Windows.Forms.Panel();
+            this.commandsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip.SuspendLayout();
+            this.bottomPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,16 +84,15 @@ namespace WindowsFormsApp1
             this.searchInputField.Dock = System.Windows.Forms.DockStyle.Top;
             this.searchInputField.Location = new System.Drawing.Point(0, 0);
             this.searchInputField.Name = "searchInputField";
-            this.searchInputField.Size = new System.Drawing.Size(800, 21);
+            this.searchInputField.Size = new System.Drawing.Size(706, 21);
             this.searchInputField.TabIndex = 1;
-            this.searchInputField.TabStop = false;
             this.searchInputField.TextChanged += new System.EventHandler(this.OnTextChanged);
             // 
             // textChangedDisplay
             // 
             this.textChangedDisplay.AutoSize = true;
             this.textChangedDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.textChangedDisplay.Location = new System.Drawing.Point(305, 15);
+            this.textChangedDisplay.Location = new System.Drawing.Point(238, 5);
             this.textChangedDisplay.Name = "textChangedDisplay";
             this.textChangedDisplay.Padding = new System.Windows.Forms.Padding(10);
             this.textChangedDisplay.Size = new System.Drawing.Size(60, 34);
@@ -98,20 +101,20 @@ namespace WindowsFormsApp1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(389, 26);
+            this.button1.Location = new System.Drawing.Point(441, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnClick);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(342, 63);
+            this.button2.Location = new System.Drawing.Point(304, 16);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 23);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 3;
             this.button2.Text = "DetailPopup";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnDetailPopupClick);
@@ -123,33 +126,74 @@ namespace WindowsFormsApp1
             this.commandListBox.ItemHeight = 12;
             this.commandListBox.Location = new System.Drawing.Point(0, 21);
             this.commandListBox.Name = "commandListBox";
-            this.commandListBox.Size = new System.Drawing.Size(800, 429);
-            this.commandListBox.TabIndex = 5;
+            this.commandListBox.Size = new System.Drawing.Size(706, 396);
+            this.commandListBox.TabIndex = 2;
+            this.commandListBox.SelectedIndexChanged += new System.EventHandler(this.OnCommandListBoxSelectedIndexChanged);
+            this.commandListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCommandListBoxKeyDown);
+            this.commandListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnCommandListBoxDoubleClick);
+            // 
+            // bottomPanel
+            // 
+            this.bottomPanel.Controls.Add(this.commandsPanel);
+            this.bottomPanel.Controls.Add(this.panel1);
+            this.bottomPanel.Controls.Add(this.descriptionTextBox);
+            this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bottomPanel.Location = new System.Drawing.Point(0, 246);
+            this.bottomPanel.Name = "bottomPanel";
+            this.bottomPanel.Size = new System.Drawing.Size(706, 171);
+            this.bottomPanel.TabIndex = 6;
+            // 
+            // commandsPanel
+            // 
+            this.commandsPanel.AutoScroll = true;
+            this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.commandsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commandsPanel.Location = new System.Drawing.Point(0, 41);
+            this.commandsPanel.Name = "commandsPanel";
+            this.commandsPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.commandsPanel.Size = new System.Drawing.Size(706, 79);
+            this.commandsPanel.TabIndex = 7;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.textChangedDisplay);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 350);
+            this.panel1.Location = new System.Drawing.Point(0, 120);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 100);
+            this.panel1.Size = new System.Drawing.Size(706, 51);
             this.panel1.TabIndex = 6;
+            // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.descriptionTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.descriptionTextBox.Location = new System.Drawing.Point(0, 0);
+            this.descriptionTextBox.Multiline = true;
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.ReadOnly = true;
+            this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.descriptionTextBox.Size = new System.Drawing.Size(706, 41);
+            this.descriptionTextBox.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(706, 417);
+            this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.commandListBox);
             this.Controls.Add(this.searchInputField);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyPreview = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnFormKeyDown);
             this.contextMenuStrip.ResumeLayout(false);
+            this.bottomPanel.ResumeLayout(false);
+            this.bottomPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -168,6 +212,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox commandListBox;
+        private System.Windows.Forms.Panel bottomPanel;
+        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.TableLayoutPanel commandsPanel;
         private System.Windows.Forms.Panel panel1;
     }
 }

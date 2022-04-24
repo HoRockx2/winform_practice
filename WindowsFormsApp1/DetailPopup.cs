@@ -19,21 +19,52 @@ namespace WindowsFormsApp1
 
         public DetailPopup()
         {
+            Logger.Start();
             InitializeComponent();
 
             AddCommandTextBox();
+        }
+
+        public DetailPopup(DetailModel detailModel)
+        {
+            Logger.Start();
+
+            InitializeComponent();
+
+            titleTextBox.Text = detailModel.Title;
+            contentTextBox.Text = detailModel.Description;
+
+            foreach(var command in detailModel.Commands)
+            {
+                AddCommandTextBox(command);
+            }
         }
 
         private void AddCommandTextBox()
         {
             Logger.Start();
 
+            CreatenewCommandTextBox();
+        }
+
+        private void AddCommandTextBox(string predefinedCommand)
+        {
+            Logger.Start();
+
+            var newCommandTextBox = CreatenewCommandTextBox();
+            newCommandTextBox.Text = predefinedCommand;
+        }
+
+        private TextBox CreatenewCommandTextBox()
+        {
             var newCommandTextBox = new TextBox();
             newCommandTextBox.Tag = commandTextBoxList.Count;
             newCommandTextBox.Dock = DockStyle.Fill;
 
             commandTextBoxList.Add(newCommandTextBox);
             commandList.Controls.Add(newCommandTextBox);
+
+            return newCommandTextBox;
         }
 
         private void OnPopupKeyDown(object sender, KeyEventArgs e)
@@ -42,6 +73,7 @@ namespace WindowsFormsApp1
 
             if(e.KeyCode == Keys.Escape)
             {
+                // TODO: it's good to make 'do you want exit?' popup
                 DialogResult = DialogResult.Cancel;
                 this.Hide();
             }

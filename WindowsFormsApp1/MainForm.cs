@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using WindowsFormsApp1.interop;
 using WindowsFormsApp1.model;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace WindowsFormsApp1
 {
@@ -19,7 +20,10 @@ namespace WindowsFormsApp1
         private KeyEventHandler keyEventHandler = null;
         private Fetch fetch;
         private List<DetailModel> commandList = new List<DetailModel>();
+        private List<Tuple<int, string>> searchResult = new List<Tuple<int, string>>();
         private FileIO fileIO = new FileIO();
+        private List<TextBox> commandTextBoxList = new List<TextBox>();
+        private const string COMMAND_CONTROL_NAME_PREFIX = "command";
 
         public MainForm()
         {
@@ -130,7 +134,8 @@ namespace WindowsFormsApp1
             this.Visible = true;
             this.TopMost = true;
             this.TopMost = false;
-            this.Focus();
+            //this.Focus();
+            searchInputField.Focus();
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
@@ -170,10 +175,28 @@ namespace WindowsFormsApp1
             string searchText = (sender as TextBox).Text;
 
             textChangedDisplay.Text = searchText;
-            
+
             if(searchText.Length == 0)
             {
                 ShowAllCommandList();
+            }
+            else
+            {
+                Regex rx = new Regex(searchText, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+                //var results = commandList.Where(s => rx.IsMatch(s.Title));
+                commandListBox.Items.Clear();
+                searchResult.Clear();
+
+                for(int i = 0; i < commandList.Count; i++)
+                {
+                    if(rx.IsMatch( commandList[i].Title ))
+                    {
+                        searchResult.Add(new Tuple<int, string>(i, commandList[i].Title));
+                    }
+                }
+
+                ReflectSearchResultToCommandListBox();
             }
         }
 
@@ -182,16 +205,31 @@ namespace WindowsFormsApp1
             Logger.Info();
 
             commandListBox.Items.Clear();
-            
+            searchResult.Clear();
+
+            int i = 0; 
+
             foreach(var command in commandList)
             {
-                commandListBox.Items.Add(command.Title);
+                searchResult.Add(new Tuple<int, string> (i++, command.Title));
+            }
+
+            ReflectSearchResultToCommandListBox();
+        }
+
+        private void ReflectSearchResultToCommandListBox()
+        {
+            Logger.Info();
+
+            foreach(var searchItem in searchResult)
+            {
+                commandListBox.Items.Add(searchItem.Item2);
             }
         }
 
         private void OnClick(object sender, EventArgs e)
         {
-            Logger.Start();
+            Logger.Start("Block");
 
             fetch.FetchData();
         }
@@ -200,21 +238,20 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            var detailPopup = new DetailPopup();
-            DialogResult dialogResult = detailPopup.ShowDialog();
-
-            if(dialogResult == DialogResult.OK)
+            using (var detailPopup = new DetailPopup())
             {
-                Logger.Info("dialog result is ok");
-                AddCommandList(detailPopup.ResultModel);
-            }
-            else if(dialogResult == DialogResult.Cancel)
-            {
-                Logger.Info("dialog result is cancel");
-            }
+                DialogResult dialogResult = detailPopup.ShowDialog();
 
-            Logger.Info("do dispose popup");
-            detailPopup.Dispose();
+                if (dialogResult == DialogResult.OK)
+                {
+                    Logger.Info("dialog result is ok");
+                    AddCommandList(detailPopup.ResultModel);
+                }
+                else if (dialogResult == DialogResult.Cancel)
+                {
+                    Logger.Info("dialog result is cancel");
+                }
+            }
         }
 
         private void AddCommandList(DetailModel newModel)
@@ -222,10 +259,137 @@ namespace WindowsFormsApp1
             Logger.Start();
 
             commandList.Add(newModel);
-            fileIO.SaveDataAsync(commandList);
+            NotifyCommandListChanged();
 
             //ResetMainFormUI();
             //UpdateDictionary();
+        }
+
+        private void NotifyCommandListChanged()
+        {
+            Logger.Start();
+
+            fileIO.SaveDataAsync(commandList);
+
+            searchInputField.Text = "";
+            ShowAllCommandList();
+
+            descriptionTextBox.Text = "";
+            commandsPanel.Controls.Clear();
+        }
+
+        private void OnCommandListBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            Logger.Start();
+
+            if(e.KeyCode == Keys.Enter)
+            {
+                ShowDetailPopupWithDetailModel(commandListBox.SelectedIndex);
+            }
+        }
+
+        private void ShowDetailPopupWithDetailModel(int indexOfCommandListBox)
+        {
+            Logger.Start();
+
+            if(indexOfCommandListBox < 0)
+            {
+                Logger.Info($"index error : [{indexOfCommandListBox}]");
+                return;
+            }
+
+            int indexOfCommandList = searchResult[indexOfCommandListBox].Item1;
+
+            using (var detailPopup = new DetailPopup(commandList[indexOfCommandList]))
+            {
+                DialogResult dialogResult = detailPopup.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    // update command
+                    commandList[indexOfCommandList] = detailPopup.ResultModel;
+                    NotifyCommandListChanged();
+                }
+                else if (DialogResult == DialogResult.Cancel)
+                {
+                    Logger.Info("dialog result is cancel");
+                }
+            }
+        }
+
+        private void OnCommandListBoxDoubleClick(object sender, MouseEventArgs e)
+        {
+            Logger.Start();
+
+            Point doubleClickPoint = e.Location;
+            int clickedIndex = commandListBox.IndexFromPoint(doubleClickPoint);
+
+            if(clickedIndex != -1)
+            {
+                ShowDetailPopupWithDetailModel(clickedIndex);
+            }
+        }
+
+        private void OnCommandListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            if(commandListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            var commandModel = commandList[searchResult[commandListBox.SelectedIndex].Item1];
+
+            descriptionTextBox.Text = commandModel.Description;
+
+            commandTextBoxList.Clear(); // is it ok that included controls will be desctroy automatically?
+            commandsPanel.Controls.Clear();
+
+            if(commandModel.Commands.Count == 0)
+            {
+                return;
+            }
+
+            foreach(var command in commandModel.Commands)
+            {
+                var newCommandTextBox = new TextBox();
+                newCommandTextBox.Name = COMMAND_CONTROL_NAME_PREFIX + commandTextBoxList.Count;
+                newCommandTextBox.Dock = DockStyle.Fill;
+                newCommandTextBox.Text = command;
+                newCommandTextBox.ReadOnly = true;
+
+                commandTextBoxList.Add(newCommandTextBox);
+                commandsPanel.Controls.Add(newCommandTextBox);
+            }
+        }
+
+        private void OnFormKeyDown(object sender, KeyEventArgs e)
+        {
+            Logger.Start();
+
+            if(e.Modifiers == Keys.Alt && (Keys.D1 <= e.KeyCode && e.KeyCode <= Keys.D9))
+            {
+                Logger.Info(e.KeyCode.ToString());
+
+                int commandIndex = e.KeyCode - Keys.D0;
+
+                if(commandTextBoxList.Count < commandIndex )
+                {
+                    return;
+                }
+
+                // show dialog
+                MessageBox.Show($"Command {commandIndex} is copy!", "Copy command");
+                // copy to clipboard
+                Clipboard.SetText(commandTextBoxList[commandIndex - 1].Text);
+            }
+            else if (e.KeyCode == Keys.Escape && this.ContainsFocus)
+            {
+                Logger.Info("let's hide");
+
+                this.Hide();
+            }
         }
     }
 }
