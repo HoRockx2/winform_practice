@@ -57,6 +57,12 @@ namespace WindowsFormsApp1
             Logger.Start();
 
             var stringData = fileIO.LoadData();
+
+            if (string.IsNullOrWhiteSpace(stringData))
+            {
+                return;
+            }
+
             commandList = JsonConvert.DeserializeObject<List<DetailModel>>(stringData);
         }
 

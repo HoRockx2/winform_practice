@@ -1,0 +1,2 @@
+MainPackage=C:\Users\j_hog\Source\Repos\winform_practice\AppPackaging\bin\x64\Release\AppPackaging_1.0.0.0_x64.msix
+SymbolPackage=C:\Users\j_hog\Source\Repos\winform_practice\AppPackaging\obj\x64\Release\Symbols\AppPackaging_1.0.0.0_x64.appxsym

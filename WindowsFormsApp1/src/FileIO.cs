@@ -38,6 +38,13 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
+            if (!File.Exists(filePath))
+            {
+                Logger.Info($"{filePath} file is not exist");
+
+                return ""; 
+            }
+
             return File.ReadAllText(filePath);
         }
     }

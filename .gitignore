@@ -2,3 +2,6 @@
 WindowsFormsApp1/bin
 WindowsFormsApp1/obj
 packages
+AppPackaging/bin
+AppPackaging/obj
+AppPackaging/AppPackages
