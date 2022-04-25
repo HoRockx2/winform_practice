@@ -30,6 +30,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
+            this.Text = AssemblyGetter.GetTitle();
+
             keyEventHandler = new KeyEventHandler();
             RegisterHotKey();
 
@@ -160,14 +162,21 @@ namespace WindowsFormsApp1
             this.Visible = false;
         }
 
+        private void ExitProgram()
+        {
+            Logger.Start();
+
+            isNeedToExit = true;
+            Environment.Exit(0); // it's not calling OnFormClosing... 
+        }
+
         private void OnItemsClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             Logger.Start();
 
             switch (e.ClickedItem.Tag){
                 case "CONTEXT_EXIT":
-                    isNeedToExit = true;
-                    Environment.Exit(0); // it's not calling OnFormClosing... 
+                    ExitProgram();
                     break;
                 case "CONTEXT_OPEN":
                     ShowWinForm();
@@ -324,11 +333,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void OnCommandListBoxDoubleClick(object sender, MouseEventArgs e)
+        private void OnCommandListBoxDoubleClick(object sender, EventArgs e)
         {
             Logger.Start();
 
-            Point doubleClickPoint = e.Location;
+            Point doubleClickPoint = (e as MouseEventArgs).Location;
             int clickedIndex = commandListBox.IndexFromPoint(doubleClickPoint);
 
             if(clickedIndex != -1)
@@ -414,6 +423,21 @@ namespace WindowsFormsApp1
 
                 this.Hide();
             }
+        }
+
+        private void OnAboutClick(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            var aboutDialog = new About();
+            aboutDialog.ShowDialog();
+        }
+
+        private void OnExitMenuClick(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            ExitProgram();
         }
     }
 }

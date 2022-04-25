@@ -16,3 +16,11 @@
 
 - Known issue
     - Need to handle logic when .dat file doesn't exist
+
+- Making AboutBox
+    - https://iamadeveloper.tistory.com/181
+    - Get Assembly data...?
+        - https://nathondalton.wordpress.com/2016/10/03/use-assembly-title-description-company-copyright-version-in-c/
+
+- basic guide about winform layout
+    - https://docs.microsoft.com/ko-kr/dotnet/desktop/winforms/controls/layout?view=netdesktop-6.0
