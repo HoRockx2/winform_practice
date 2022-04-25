@@ -44,9 +44,13 @@ namespace WindowsFormsApp1
             this.commandsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip
@@ -134,48 +138,75 @@ namespace WindowsFormsApp1
             // 
             // bottomPanel
             // 
-            this.bottomPanel.Controls.Add(this.commandsPanel);
+            this.bottomPanel.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.bottomPanel.Controls.Add(this.groupBox2);
+            this.bottomPanel.Controls.Add(this.groupBox1);
             this.bottomPanel.Controls.Add(this.panel1);
-            this.bottomPanel.Controls.Add(this.descriptionTextBox);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomPanel.Location = new System.Drawing.Point(0, 246);
+            this.bottomPanel.Location = new System.Drawing.Point(0, 171);
+            this.bottomPanel.Margin = new System.Windows.Forms.Padding(5);
             this.bottomPanel.Name = "bottomPanel";
-            this.bottomPanel.Size = new System.Drawing.Size(706, 171);
+            this.bottomPanel.Size = new System.Drawing.Size(706, 246);
             this.bottomPanel.TabIndex = 6;
             // 
             // commandsPanel
             // 
             this.commandsPanel.AutoScroll = true;
-            this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.commandsPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 686F));
             this.commandsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commandsPanel.Location = new System.Drawing.Point(0, 41);
+            this.commandsPanel.Location = new System.Drawing.Point(3, 17);
             this.commandsPanel.Name = "commandsPanel";
             this.commandsPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.commandsPanel.Size = new System.Drawing.Size(706, 79);
+            this.commandsPanel.Size = new System.Drawing.Size(700, 108);
             this.commandsPanel.TabIndex = 7;
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.textChangedDisplay);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 120);
+            this.panel1.Location = new System.Drawing.Point(0, 195);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(706, 51);
             this.panel1.TabIndex = 6;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.descriptionTextBox.BackColor = System.Drawing.SystemColors.Highlight;
+            this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descriptionTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.descriptionTextBox.Location = new System.Drawing.Point(0, 0);
+            this.descriptionTextBox.Location = new System.Drawing.Point(3, 17);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ReadOnly = true;
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(706, 41);
+            this.descriptionTextBox.Size = new System.Drawing.Size(700, 47);
             this.descriptionTextBox.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.descriptionTextBox);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(706, 67);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Description";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.commandsPanel);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 67);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(706, 128);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Commands";
             // 
             // MainForm
             // 
@@ -185,17 +216,19 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.commandListBox);
             this.Controls.Add(this.searchInputField);
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.KeyPreview = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnFormKeyDown);
             this.contextMenuStrip.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
-            this.bottomPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,6 +249,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.TableLayoutPanel commandsPanel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

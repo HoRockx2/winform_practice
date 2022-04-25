@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
         private List<DetailModel> commandList = new List<DetailModel>();
         private List<Tuple<int, string>> searchResult = new List<Tuple<int, string>>();
         private FileIO fileIO = new FileIO();
+        private List<TableLayoutPanel> commandTextLayoutList = new List<TableLayoutPanel>();
         private List<TextBox> commandTextBoxList = new List<TextBox>();
         private const string COMMAND_CONTROL_NAME_PREFIX = "command";
 
@@ -349,7 +350,9 @@ namespace WindowsFormsApp1
 
             descriptionTextBox.Text = commandModel.Description;
 
+
             commandTextBoxList.Clear(); // is it ok that included controls will be desctroy automatically?
+            commandTextLayoutList.Clear();
             commandsPanel.Controls.Clear();
 
             if(commandModel.Commands.Count == 0)
@@ -359,14 +362,29 @@ namespace WindowsFormsApp1
 
             foreach(var command in commandModel.Commands)
             {
+                var newCommandPanel = new TableLayoutPanel();
+                newCommandPanel.Dock = DockStyle.Fill;
+                newCommandPanel.ColumnCount = 2;
+                newCommandPanel.AutoSize = true;
+                newCommandPanel.Padding = new Padding(0, 0, 10, 0);
+
+                var newCommandLabel = new Label();
+                newCommandLabel.Text = (commandTextBoxList.Count + 1).ToString();
+                newCommandLabel.Width = 20;
+                //newCommandLabel.Dock = DockStyle.Left;
+
                 var newCommandTextBox = new TextBox();
                 newCommandTextBox.Name = COMMAND_CONTROL_NAME_PREFIX + commandTextBoxList.Count;
                 newCommandTextBox.Dock = DockStyle.Fill;
                 newCommandTextBox.Text = command;
                 newCommandTextBox.ReadOnly = true;
 
+                newCommandPanel.Controls.Add(newCommandLabel);
+                newCommandPanel.Controls.Add(newCommandTextBox);
+
+                commandTextLayoutList.Add(newCommandPanel);
                 commandTextBoxList.Add(newCommandTextBox);
-                commandsPanel.Controls.Add(newCommandTextBox);
+                commandsPanel.Controls.Add(newCommandPanel);
             }
         }
 
