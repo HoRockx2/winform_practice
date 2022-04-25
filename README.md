@@ -8,3 +8,11 @@
 
 - We can find source code of windows dll
     -https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/Button.cs,cb5c00483936b8f7
+    
+    
+- P-Invokes issue
+    - https://docs.microsoft.com/ko-kr/dotnet/fundamentals/code-analysis/quality-rules/ca1401 : issue
+    - https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers : access modifier
+
+- Known issue
+    - Need to handle logic when .dat file doesn't exist
