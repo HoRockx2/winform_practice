@@ -138,7 +138,6 @@ namespace WindowsFormsApp1
             // 
             // bottomPanel
             // 
-            this.bottomPanel.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.bottomPanel.Controls.Add(this.groupBox2);
             this.bottomPanel.Controls.Add(this.groupBox1);
             this.bottomPanel.Controls.Add(this.panel1);
@@ -152,7 +151,6 @@ namespace WindowsFormsApp1
             // commandsPanel
             // 
             this.commandsPanel.AutoScroll = true;
-            this.commandsPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 686F));
             this.commandsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commandsPanel.Location = new System.Drawing.Point(3, 17);
@@ -163,7 +161,6 @@ namespace WindowsFormsApp1
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.textChangedDisplay);
             this.panel1.Controls.Add(this.button1);
@@ -175,7 +172,6 @@ namespace WindowsFormsApp1
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.BackColor = System.Drawing.SystemColors.Highlight;
             this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descriptionTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.descriptionTextBox.Location = new System.Drawing.Point(3, 17);
