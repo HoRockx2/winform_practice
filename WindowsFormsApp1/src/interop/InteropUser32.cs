@@ -12,10 +12,15 @@ namespace WindowsFormsApp1.interop
         public static int WM_HOTKEY = 0x312;
         public static int WM_QUERYENDSESSION = 0x0011;
 
-        [DllImport("user32.dll")]
+        private const string USER_32_DLL = "user32.dll";
+
+        [DllImport(USER_32_DLL)]
         internal static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
 
-        [DllImport("user32.dll")]
+        [DllImport(USER_32_DLL)]
         internal static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        [DllImport(USER_32_DLL)]
+        internal static extern bool SetForegroundWindow(IntPtr hWnd);
     }
 }

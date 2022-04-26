@@ -11,6 +11,7 @@ using WindowsFormsApp1.interop;
 using WindowsFormsApp1.model;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using WindowsFormsApp1.interop;
 
 namespace WindowsFormsApp1
 {
@@ -143,7 +144,8 @@ namespace WindowsFormsApp1
             this.Visible = true;
             this.TopMost = true;
             this.TopMost = false;
-            //this.Focus();
+
+            InteropUser32.SetForegroundWindow(this.Handle);
             searchInputField.Focus();
         }
 
@@ -401,7 +403,7 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            if(e.Modifiers == Keys.Alt && (Keys.D1 <= e.KeyCode && e.KeyCode <= Keys.D9))
+            if(e.Modifiers == Keys.Control && (Keys.D1 <= e.KeyCode && e.KeyCode <= Keys.D9))
             {
                 Logger.Info(e.KeyCode.ToString());
 

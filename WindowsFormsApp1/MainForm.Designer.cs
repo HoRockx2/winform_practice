@@ -217,7 +217,7 @@ namespace WindowsFormsApp1
             this.exportToolStripMenuItem,
             this.importToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exportToolStripMenuItem
@@ -235,7 +235,7 @@ namespace WindowsFormsApp1
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnExitMenuClick);
             // 
@@ -261,6 +261,7 @@ namespace WindowsFormsApp1
             this.searchInputField.Name = "searchInputField";
             this.searchInputField.Size = new System.Drawing.Size(706, 21);
             this.searchInputField.TabIndex = 7;
+            this.searchInputField.TextChanged += new System.EventHandler(this.OnTextChanged);
             // 
             // commandListBox
             // 
