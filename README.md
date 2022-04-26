@@ -26,4 +26,6 @@
     - https://docs.microsoft.com/ko-kr/dotnet/desktop/winforms/controls/layout?view=netdesktop-6.0
 
 # Issue list
-- [22.04.26] Form 이 Hide 되어있지 않은 상황에서 hot key 를 누를 시 Form 에 포커스가 안가는 현상
+- [22.04.26] 
+	- Form 이 Hide 되어있지 않은 상황에서 hot key 를 누를 시 Form 에 포커스가 안가는 현상
+	- Alt key 는 위 메뉴 동작에도 영향을 줘서, 복사 핫키를 Ctrl 로 변경하는게 좋겠음.
