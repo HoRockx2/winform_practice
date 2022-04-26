@@ -24,3 +24,6 @@
 
 - basic guide about winform layout
     - https://docs.microsoft.com/ko-kr/dotnet/desktop/winforms/controls/layout?view=netdesktop-6.0
+
+# Issue list
+- [22.04.26] Form 이 Hide 되어있지 않은 상황에서 hot key 를 누를 시 Form 에 포커스가 안가는 현상
