@@ -31,4 +31,4 @@
 	- Alt key 는 위 메뉴 동작에도 영향을 줘서, 복사 핫키를 Ctrl 로 변경하는게 좋겠음. [done]
 
 - [22.04.27]
-	- notification tray double click 시 show 
+	- notification tray double click 시 show [done]

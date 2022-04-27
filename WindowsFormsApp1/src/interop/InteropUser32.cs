@@ -22,5 +22,8 @@ namespace WindowsFormsApp1.interop
 
         [DllImport(USER_32_DLL)]
         internal static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport(USER_32_DLL)]
+        internal static extern IntPtr GetForegroundWindow();
     }
 }

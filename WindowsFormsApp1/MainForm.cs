@@ -137,6 +137,16 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void OnTrayMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Logger.Start();
+
+            if(this.Handle != InteropUser32.GetForegroundWindow())
+            {
+                ShowWinForm();
+            }
+        }
+
         private void ShowWinForm()
         {
             Logger.Start();
