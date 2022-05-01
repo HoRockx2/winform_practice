@@ -32,3 +32,6 @@
 
 - [22.04.27]
 	- notification tray double click 시 show [done]
+
+- [22.05.01]
+    - command list 에서 enter key 에 대한 처리. detail popup 보여주면 좋을 듯 

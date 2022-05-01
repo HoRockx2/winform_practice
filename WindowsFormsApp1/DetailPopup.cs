@@ -29,6 +29,14 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
+            if(detailModel == null)
+            {
+                InitializeComponent();
+                AddCommandTextBox();
+
+                return;
+            }
+
             InitializeComponent();
 
             titleTextBox.Text = detailModel.Title;

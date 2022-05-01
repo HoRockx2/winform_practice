@@ -26,6 +26,9 @@ namespace WindowsFormsApp1
         private List<TableLayoutPanel> commandTextLayoutList = new List<TableLayoutPanel>();
         private List<TextBox> commandTextBoxList = new List<TextBox>();
         private const string COMMAND_CONTROL_NAME_PREFIX = "command";
+        private IntPtr topWindowHandler = IntPtr.Zero;
+
+        delegate void DetailPopupOKResultHandelr(DetailModel result);
 
         public MainForm()
         {
@@ -44,6 +47,13 @@ namespace WindowsFormsApp1
             Application.ApplicationExit += Application_ApplicationExit;
         }
 
+        private void SetTopWindow(IntPtr handle)
+        {
+            Logger.Start();
+
+            topWindowHandler = handle;
+        }
+
         protected override void OnShown(EventArgs e)
         {
             Logger.Start();
@@ -54,6 +64,8 @@ namespace WindowsFormsApp1
             {
                 ShowAllCommandList();
             }
+
+            SetTopWindow(this.Handle);
         }
 
         private void LoadData()
@@ -131,9 +143,18 @@ namespace WindowsFormsApp1
                 if ((int)Keys.Space == keyCode)
                 {
                     Logger.Info("Catch HotKey!");
-
-                    ShowWinForm();
+                    HotKeyHandler();
                 }
+            }
+        }
+
+        private void HotKeyHandler()
+        {
+            Logger.Start();
+
+            if (!Utils.IsForeground(topWindowHandler))
+            {
+                SetTopWindowAsForeground();
             }
         }
 
@@ -141,13 +162,13 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            if(this.Handle != InteropUser32.GetForegroundWindow())
+            if(!Utils.IsForeground(this.Handle)) // is it always true?
             {
-                ShowWinForm();
+                SetTopWindowAsForeground();
             }
         }
 
-        private void ShowWinForm()
+        private void SetTopWindowAsForeground()
         {
             Logger.Start();
 
@@ -155,8 +176,12 @@ namespace WindowsFormsApp1
             this.TopMost = true;
             this.TopMost = false;
 
-            InteropUser32.SetForegroundWindow(this.Handle);
-            searchInputField.Focus();
+            InteropUser32.SetForegroundWindow(topWindowHandler);
+
+            if(topWindowHandler == this.Handle)
+            {
+                searchInputField.Focus();
+            }
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
@@ -191,7 +216,7 @@ namespace WindowsFormsApp1
                     ExitProgram();
                     break;
                 case "CONTEXT_OPEN":
-                    ShowWinForm();
+                    SetTopWindowAsForeground();
                     break;
             }
         }
@@ -262,24 +287,37 @@ namespace WindowsFormsApp1
             fetch.FetchData();
         }
 
-        private void OnDetailPopupClick(object sender, EventArgs e)
+        private void ShowDetailPopup(DetailPopupOKResultHandelr retOKHandler, DetailModel existedDetailModel = null)
         {
             Logger.Start();
 
-            using (var detailPopup = new DetailPopup())
+            using (var detailPopup = new DetailPopup(existedDetailModel))
             {
+                SetTopWindow(detailPopup.Handle);
                 DialogResult dialogResult = detailPopup.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
                 {
                     Logger.Info("dialog result is ok");
-                    AddCommandList(detailPopup.ResultModel);
+                    retOKHandler?.Invoke(detailPopup.ResultModel);
                 }
                 else if (dialogResult == DialogResult.Cancel)
                 {
                     Logger.Info("dialog result is cancel");
                 }
+
+                SetTopWindow(this.Handle);
             }
+        }
+
+        private void OnDetailPopupClick(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            ShowDetailPopup((retModel) =>
+            {
+                AddCommandList(retModel);
+            });
         }
 
         private void AddCommandList(DetailModel newModel)
@@ -328,21 +366,11 @@ namespace WindowsFormsApp1
 
             int indexOfCommandList = searchResult[indexOfCommandListBox].Item1;
 
-            using (var detailPopup = new DetailPopup(commandList[indexOfCommandList]))
+            ShowDetailPopup((retModel) =>
             {
-                DialogResult dialogResult = detailPopup.ShowDialog();
-
-                if (dialogResult == DialogResult.OK)
-                {
-                    // update command
-                    commandList[indexOfCommandList] = detailPopup.ResultModel;
-                    NotifyCommandListChanged();
-                }
-                else if (DialogResult == DialogResult.Cancel)
-                {
-                    Logger.Info("dialog result is cancel");
-                }
-            }
+                commandList[indexOfCommandList] = retModel;
+                NotifyCommandListChanged();
+            }, commandList[indexOfCommandList]);
         }
 
         private void OnCommandListBoxDoubleClick(object sender, EventArgs e)
@@ -413,29 +441,48 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            if(e.Modifiers == Keys.Control && (Keys.D1 <= e.KeyCode && e.KeyCode <= Keys.D9))
+            if (e.Modifiers == Keys.Control && (Keys.D1 <= e.KeyCode && e.KeyCode <= Keys.D9))
             {
                 Logger.Info(e.KeyCode.ToString());
 
-                int commandIndex = e.KeyCode - Keys.D0;
-
-                if(commandTextBoxList.Count < commandIndex )
-                {
-                    return;
-                }
-
-                // show dialog
-                MessageBox.Show($"Command {commandIndex} is copy!", "Copy command");
-                // copy to clipboard
-                Clipboard.SetText(commandTextBoxList[commandIndex - 1].Text);
+                CopyCommand(e.KeyCode);
             }
             else if (e.KeyCode == Keys.Escape && this.ContainsFocus)
             {
-                Logger.Info("let's hide");
+                Logger.Info($"let's hide, focus:  {this.Focused} | foreground: {Utils.IsForeground(this.Handle)}");
 
                 this.Hide();
             }
         }
+
+        private void CopyCommand(Keys numberKey)
+        {
+            Logger.Start();
+
+            int commandIndex = numberKey - Keys.D0;
+
+            if (commandTextBoxList.Count < commandIndex)
+            {
+                return;
+            }
+
+            // copy to clipboard
+            try
+            {
+                Clipboard.SetText(commandTextBoxList[commandIndex - 1].Text);
+            }
+            catch (Exception e)
+            {
+                Logger.Info(e.Message);
+                Logger.Info(e.StackTrace);
+
+                MessageBox.Show($"{e.Message} Exception happen on set text to clip board");
+                return;
+            }
+
+            MessageBox.Show($"Command {commandIndex} is copy!", "Copy command");
+        }
+
 
         private void OnAboutClick(object sender, EventArgs e)
         {
