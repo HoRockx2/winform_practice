@@ -35,3 +35,6 @@
 
 - [22.05.01]
     - command list 에서 enter key 에 대한 처리. detail popup 보여주면 좋을 듯 
+
+- [22.05.03]
+    -  Desc 에 대해서도 검색을 가능하게 하고, priority 에 따라 sort 하고 그 결과를 보여주도록 하면 좋을 듯
