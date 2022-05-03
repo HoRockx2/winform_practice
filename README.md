@@ -38,3 +38,4 @@
 
 - [22.05.03]
     -  Desc 에 대해서도 검색을 가능하게 하고, priority 에 따라 sort 하고 그 결과를 보여주도록 하면 좋을 듯
+    -  main form 가 foreground 이면서 그런데 포커스가 검색창 말고 다른곳, detailpopup button 이라던지, 가 있으면 hot key 누를 시 검색창에 포커스가 안감
