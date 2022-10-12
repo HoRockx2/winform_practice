@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="bf270d42-84a1-411b-9069-87c211911f65"
+    Name="CommandManager"
     Publisher="CN=j_hogi"
-    Version="1.0.2.0" />
+    Version="1.0.3.0" />
 
   <Properties>
-    <DisplayName>AppPackaging</DisplayName>
-    <PublisherDisplayName>j_hog</PublisherDisplayName>
+    <DisplayName>CommandManager</DisplayName>
+    <PublisherDisplayName>j_hogo</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
