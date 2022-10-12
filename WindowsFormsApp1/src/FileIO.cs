@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp1.model;
 using System.IO;
@@ -11,7 +9,7 @@ namespace WindowsFormsApp1
 {
     public class FileIO
     {
-        private const string filePath = @"commands.dat";
+        private readonly string filePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "commands.dat";
 
         public FileIO()
         {
