@@ -122,7 +122,7 @@ namespace WindowsFormsApp1
             this.button2.TabIndex = 3;
             this.button2.Text = "DetailPopup";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.OnDetailPopupClick);
+            this.button2.Click += new System.EventHandler(this.OnDetailPopupButtonClick);
             // 
             // bottomPanel
             // 
@@ -275,6 +275,7 @@ namespace WindowsFormsApp1
             this.commandListBox.TabIndex = 8;
             this.commandListBox.SelectedIndexChanged += new System.EventHandler(this.OnCommandListBoxSelectedIndexChanged);
             this.commandListBox.DoubleClick += new System.EventHandler(this.OnCommandListBoxDoubleClick);
+            this.commandListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCommandListBoxKeyDown);
             // 
             // MainForm
             // 

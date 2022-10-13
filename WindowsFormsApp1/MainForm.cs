@@ -310,7 +310,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void OnDetailPopupClick(object sender, EventArgs e)
+        private void ShowCreateNewCommandPopup()
         {
             Logger.Start();
 
@@ -318,6 +318,13 @@ namespace WindowsFormsApp1
             {
                 AddCommandList(retModel);
             });
+        }
+
+        private void OnDetailPopupButtonClick(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            ShowCreateNewCommandPopup();
         }
 
         private void AddCommandList(DetailModel newModel)
@@ -452,6 +459,10 @@ namespace WindowsFormsApp1
                 Logger.Info($"let's hide, focus:  {this.Focused} | foreground: {Utils.IsForeground(this.Handle)}");
 
                 this.Hide();
+            }
+            else if(e.Modifiers == Keys.Alt && e.KeyCode == Keys.C)
+            {
+                ShowCreateNewCommandPopup();
             }
         }
 

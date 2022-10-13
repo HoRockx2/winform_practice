@@ -70,7 +70,7 @@ namespace WindowsFormsApp1
             this.titleTextBox.Location = new System.Drawing.Point(13, 29);
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(100, 21);
-            this.titleTextBox.TabIndex = 4;
+            this.titleTextBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
             // 
             // commandList
             // 
-            this.commandList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.commandList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 501F));
             this.commandList.Location = new System.Drawing.Point(12, 200);
             this.commandList.Name = "commandList";
             this.commandList.Size = new System.Drawing.Size(501, 100);
@@ -95,7 +95,7 @@ namespace WindowsFormsApp1
             this.button1.Location = new System.Drawing.Point(12, 313);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 4;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnClickOK);
@@ -105,7 +105,7 @@ namespace WindowsFormsApp1
             this.button2.Location = new System.Drawing.Point(83, 175);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(22, 21);
-            this.button2.TabIndex = 8;
+            this.button2.TabIndex = 3;
             this.button2.Text = "+";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnPlusCommandClick);

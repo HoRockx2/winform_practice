@@ -34,7 +34,7 @@
 	- notification tray double click 시 show [done]
 
 - [22.05.01]
-    - command list 에서 enter key 에 대한 처리. detail popup 보여주면 좋을 듯 !!! 이거 꼭 ㅋㅋㅋ 
+    - command list 에서 enter key 에 대한 처리. detail popup 보여주면 좋을 듯 !!! 이거 꼭 ㅋㅋㅋ [done] 
 
 - [22.05.03]
     -  Desc 에 대해서도 검색을 가능하게 하고, priority 에 따라 sort 하고 그 결과를 보여주도록 하면 좋을 듯
@@ -44,4 +44,6 @@
     - 검색창에 p[ 이렇게 입력하니 에러 발생함
 
 - [22.10.13]
-    - 디테일 페이지에서 단축기 기능 개발 및 focus index 
+    - 디테일 페이지에서 단축기 기능 개발 및 
+    - focus index [done]
+
