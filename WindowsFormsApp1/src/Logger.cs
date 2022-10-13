@@ -15,9 +15,9 @@ namespace WindowsFormsApp1
             Debug.WriteLine($"[{caller}] ({line}): {log}");
         }
 
-        static public void Start([CallerMemberName] string caller = "", [CallerLineNumber] int line = 0)
+        static public void Start(string log = "", [CallerMemberName] string caller = "", [CallerLineNumber] int line = 0)
         {
-            Debug.WriteLine($"[{caller}] ({line}): Start");
+            Debug.WriteLine($"[{caller}] ({line}): Start [{log}]");
         }
     }
 }

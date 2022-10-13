@@ -4,16 +4,24 @@ using System.Threading.Tasks;
 using WindowsFormsApp1.model;
 using System.IO;
 using Newtonsoft.Json;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace WindowsFormsApp1
 {
     public class FileIO
     {
-        private readonly string filePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "commands.dat";
+        private readonly string filePath;
+        private readonly string fullPath;
 
         public FileIO()
         {
-            Logger.Start();   
+            Logger.Start();
+
+            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Assembly.GetExecutingAssembly().GetName().Name);
+            fullPath = Path.Combine(filePath, "commands.dat");
+            
+            Directory.CreateDirectory(filePath);
         }
 
         public async void SaveDataAsync(List<DetailModel> commandList)
@@ -25,7 +33,7 @@ namespace WindowsFormsApp1
                 string output = JsonConvert.SerializeObject(commandList);
                 Logger.Info(output);
 
-                using (StreamWriter sw = File.CreateText(filePath))
+                using (StreamWriter sw = File.CreateText(fullPath))
                 {
                     sw.Write(output);
                 }
@@ -36,14 +44,14 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            if (!File.Exists(filePath))
+            if (!File.Exists(fullPath))
             {
-                Logger.Info($"{filePath} file is not exist");
+                Logger.Info($"{fullPath} file is not exist");
 
                 return ""; 
             }
 
-            return File.ReadAllText(filePath);
+            return File.ReadAllText(fullPath);
         }
     }
 }
