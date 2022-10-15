@@ -19,6 +19,8 @@ namespace WindowsFormsApp1
 
             titleLabel.Text = AssemblyGetter.GetTitle();
             descriptionTextBox.Text = AssemblyGetter.GetDescription();
+            
+            // this is sample
         }
     }
 }
