@@ -19,6 +19,17 @@ namespace WindowsFormsApp1
 
             titleLabel.Text = AssemblyGetter.GetTitle();
             descriptionTextBox.Text = AssemblyGetter.GetDescription();
+            FilePath.Text = FileIO.FilePath;
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            Logger.Start();
+
+            if(e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

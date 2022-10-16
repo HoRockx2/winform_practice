@@ -11,14 +11,15 @@ namespace WindowsFormsApp1
 {
     public class FileIO
     {
-        private readonly string filePath;
+        private static string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Assembly.GetExecutingAssembly().GetName().Name);
         private readonly string fullPath;
+
+        public static string FilePath => filePath;
 
         public FileIO()
         {
             Logger.Start();
 
-            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Assembly.GetExecutingAssembly().GetName().Name);
             fullPath = Path.Combine(filePath, "commands.dat");
             
             Directory.CreateDirectory(filePath);
