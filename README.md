@@ -25,6 +25,10 @@
 - basic guide about winform layout
     - https://docs.microsoft.com/ko-kr/dotnet/desktop/winforms/controls/layout?view=netdesktop-6.0
 
+- Mnemonics 22.10.16
+    - https://en.wikipedia.org/wiki/Mnemonics_(keyboard)
+    - https://docs.telerik.com/devtools/winforms/controls/buttons/mnemonics
+
 # Issue list
 - [22.04.26] 
 	- Form 이 Hide 되어있지 않은 상황에서 hot key 를 누를 시 Form 에 포커스가 안가는 현상 [done]
@@ -47,3 +51,5 @@
     - 디테일 페이지에서 단축기 기능 개발 및 
     - focus index [done]
 
+- [22.10.14]
+    - import 기능 추가하기
