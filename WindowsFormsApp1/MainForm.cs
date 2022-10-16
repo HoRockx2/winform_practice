@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.interop;
 using WindowsFormsApp1.model;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
-using WindowsFormsApp1.interop;
 
 namespace WindowsFormsApp1
 {
@@ -459,10 +454,6 @@ namespace WindowsFormsApp1
                 Logger.Info($"let's hide, focus:  {this.Focused} | foreground: {Utils.IsForeground(this.Handle)}");
 
                 this.Hide();
-            }
-            else if(e.Modifiers == Keys.Alt && e.KeyCode == Keys.C)
-            {
-                ShowCreateNewCommandPopup();
             }
         }
 

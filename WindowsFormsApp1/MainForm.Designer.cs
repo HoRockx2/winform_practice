@@ -36,8 +36,8 @@ namespace WindowsFormsApp1
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.textChangedDisplay = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.FetchTestBtn = new System.Windows.Forms.Button();
+            this.CreateNewCommandBtn = new System.Windows.Forms.Button();
             this.bottomPanel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.commandsPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -97,32 +97,32 @@ namespace WindowsFormsApp1
             // 
             this.textChangedDisplay.AutoSize = true;
             this.textChangedDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.textChangedDisplay.Location = new System.Drawing.Point(238, 5);
+            this.textChangedDisplay.Location = new System.Drawing.Point(12, 8);
             this.textChangedDisplay.Name = "textChangedDisplay";
             this.textChangedDisplay.Padding = new System.Windows.Forms.Padding(10);
             this.textChangedDisplay.Size = new System.Drawing.Size(60, 34);
             this.textChangedDisplay.TabIndex = 2;
             this.textChangedDisplay.Text = "label1";
             // 
-            // button1
+            // FetchTestBtn
             // 
-            this.button1.Location = new System.Drawing.Point(441, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Test Fetch";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.OnClick);
+            this.FetchTestBtn.Location = new System.Drawing.Point(441, 16);
+            this.FetchTestBtn.Name = "FetchTestBtn";
+            this.FetchTestBtn.Size = new System.Drawing.Size(75, 23);
+            this.FetchTestBtn.TabIndex = 4;
+            this.FetchTestBtn.Text = "Test Fetch";
+            this.FetchTestBtn.UseVisualStyleBackColor = true;
+            this.FetchTestBtn.Click += new System.EventHandler(this.OnClick);
             // 
-            // button2
+            // CreateNewCommandBtn
             // 
-            this.button2.Location = new System.Drawing.Point(304, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "DetailPopup";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.OnDetailPopupButtonClick);
+            this.CreateNewCommandBtn.Location = new System.Drawing.Point(274, 16);
+            this.CreateNewCommandBtn.Name = "CreateNewCommandBtn";
+            this.CreateNewCommandBtn.Size = new System.Drawing.Size(161, 23);
+            this.CreateNewCommandBtn.TabIndex = 3;
+            this.CreateNewCommandBtn.Text = "&Create new command";
+            this.CreateNewCommandBtn.UseVisualStyleBackColor = true;
+            this.CreateNewCommandBtn.Click += new System.EventHandler(this.OnDetailPopupButtonClick);
             // 
             // bottomPanel
             // 
@@ -183,9 +183,9 @@ namespace WindowsFormsApp1
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.CreateNewCommandBtn);
             this.panel1.Controls.Add(this.textChangedDisplay);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.FetchTestBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 195);
             this.panel1.Name = "panel1";
@@ -314,8 +314,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.Label textChangedDisplay;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button FetchTestBtn;
+        private System.Windows.Forms.Button CreateNewCommandBtn;
         private System.Windows.Forms.Panel bottomPanel;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.TableLayoutPanel commandsPanel;

@@ -35,8 +35,8 @@ namespace WindowsFormsApp1
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.commandList = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.DetailOKButton = new System.Windows.Forms.Button();
+            this.AddCommandListButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Content
@@ -89,34 +89,33 @@ namespace WindowsFormsApp1
             this.commandList.Size = new System.Drawing.Size(501, 100);
             this.commandList.TabIndex = 6;
             // 
-            // button1
+            // DetailOKButton
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(12, 313);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.OnClickOK);
+            this.DetailOKButton.Location = new System.Drawing.Point(12, 313);
+            this.DetailOKButton.Name = "DetailOKButton";
+            this.DetailOKButton.Size = new System.Drawing.Size(75, 23);
+            this.DetailOKButton.TabIndex = 4;
+            this.DetailOKButton.Text = "&OK";
+            this.DetailOKButton.UseVisualStyleBackColor = true;
+            this.DetailOKButton.Click += new System.EventHandler(this.OnClickOK);
             // 
-            // button2
+            // AddCommandListButton
             // 
-            this.button2.Location = new System.Drawing.Point(83, 175);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(22, 21);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "+";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.OnPlusCommandClick);
+            this.AddCommandListButton.Location = new System.Drawing.Point(83, 175);
+            this.AddCommandListButton.Name = "AddCommandListButton";
+            this.AddCommandListButton.Size = new System.Drawing.Size(22, 21);
+            this.AddCommandListButton.TabIndex = 3;
+            this.AddCommandListButton.Text = "&+";
+            this.AddCommandListButton.UseVisualStyleBackColor = true;
+            this.AddCommandListButton.Click += new System.EventHandler(this.OnPlusCommandClick);
             // 
             // DetailPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 348);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.AddCommandListButton);
+            this.Controls.Add(this.DetailOKButton);
             this.Controls.Add(this.commandList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.titleTextBox);
@@ -139,7 +138,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel commandList;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button DetailOKButton;
+        private System.Windows.Forms.Button AddCommandListButton;
     }
 }
