@@ -29,6 +29,9 @@
     - https://en.wikipedia.org/wiki/Mnemonics_(keyboard)
     - https://docs.telerik.com/devtools/winforms/controls/buttons/mnemonics
 
+- How to block sending dialog result
+    - https://stackoverflow.com/questions/3451163/how-to-stop-the-execution-of-dialogresult-based-on-a-condition
+
 # Issue list
 - [22.04.26] 
 	- Form 이 Hide 되어있지 않은 상황에서 hot key 를 누를 시 Form 에 포커스가 안가는 현상 [done]
