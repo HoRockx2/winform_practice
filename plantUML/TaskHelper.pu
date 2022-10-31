@@ -1,0 +1,75 @@
+@startuml
+class TaskModel
+class TaskDetailViewModel
+class TaskListViewModel
+
+class TaskDetailView
+class TaskListView
+
+interface IFileIO
+
+class FileIO
+
+class TaskModel {
+    Status status
+    int progress
+    List<string> relatedLinkList
+    Date createdDate
+    Date modifiedDate
+    string title
+    string detail
+}
+
+class TaskDetailViewModel{
+    private TaskModel taskModel
+
+    public string Title
+    public string Detail
+
+    public int Progress // it should be 0~ 100
+
+    public TaskDetailViewModel(TaskModel)
+
+    public void InProgress()
+    public void Done()
+    public void Ready()
+
+    public void Load()
+    public void SaveAll()
+
+    public void AddLink(string url)
+    public void RemoveLink(int index)
+}
+
+class TaskListViewModel{
+    private List<TaskModel> taskDetailList
+    
+    public void Load()
+    public void Save()
+
+    public void OpenDetail(int detailIndex)
+    public void GetDetail(int detailIndex)
+}
+
+class TaskListView{
+    private TaskListViewModel viewModel
+}
+
+class TaskDetailView{
+    private TaskDetailViewModel viewModel
+}
+
+FileIO --|> IFileIO
+
+TaskListViewModel --* IFileIO
+
+TaskDetailViewModel --* TaskModel
+
+TaskDetailView --* TaskDetailViewModel
+
+TaskListViewModel --o TaskDetailView
+
+TaskListView --* TaskListViewModel
+TaskListViewModel --* TaskModel
+
+@enduml
