@@ -25,6 +25,7 @@ class TaskDetailViewModel{
 
     public string Title
     public string Detail
+    public string HowLongAlive
 
     public int Progress // it should be 0~ 100
 
