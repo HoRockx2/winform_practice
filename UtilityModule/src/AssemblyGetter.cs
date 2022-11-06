@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp1
+namespace UtilityModule
 {
     public class AssemblyGetter
     {
@@ -27,6 +27,13 @@ namespace WindowsFormsApp1
             var desc = (AssemblyDescriptionAttribute)assm.GetCustomAttribute(typeof(AssemblyDescriptionAttribute));
 
             return desc.Description;
+        }
+
+        static public string GetName()
+        {
+            Logger.Start();
+
+            return Assembly.GetExecutingAssembly().GetName().Name;
         }
     }
 }

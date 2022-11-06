@@ -110,14 +110,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\AssemblyGetter.cs" />
-    <Compile Include="src\Fetch.cs" />
-    <Compile Include="src\FileIO.cs" />
-    <Compile Include="src\interop\InteropUser32.cs" />
-    <Compile Include="src\KeyEventHandler.cs" />
-    <Compile Include="src\Logger.cs" />
     <Compile Include="src\model\DetailModel.cs" />
-    <Compile Include="src\Utils.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +159,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UtilityModule\UtilityModule.csproj">
+      <Project>{371e8023-5946-4803-af3b-27a4bf3196f5}</Project>
+      <Name>UtilityModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

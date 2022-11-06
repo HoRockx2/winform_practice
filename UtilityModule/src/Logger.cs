@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace WindowsFormsApp1
+namespace UtilityModule
 {
     public class Logger
     {

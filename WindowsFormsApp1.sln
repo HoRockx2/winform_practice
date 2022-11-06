@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{1A19A20B-6E2E-4CC8-995C-84875C5A30B2}"
 EndProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "AppPackaging", "AppPackaging\AppPackaging.wapproj", "{33B21908-616A-405F-89D7-C0EF8A2C230D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityModule", "UtilityModule\UtilityModule.csproj", "{371E8023-5946-4803-AF3B-27A4BF3196F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +78,26 @@ Global
 		{33B21908-616A-405F-89D7-C0EF8A2C230D}.Release|x86.ActiveCfg = Release|x86
 		{33B21908-616A-405F-89D7-C0EF8A2C230D}.Release|x86.Build.0 = Release|x86
 		{33B21908-616A-405F-89D7-C0EF8A2C230D}.Release|x86.Deploy.0 = Release|x86
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|ARM.Build.0 = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|x64.Build.0 = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Debug|x86.Build.0 = Debug|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|ARM.Build.0 = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|ARM64.Build.0 = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|x64.ActiveCfg = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|x64.Build.0 = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|x86.ActiveCfg = Release|Any CPU
+		{371E8023-5946-4803-AF3B-27A4BF3196F5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

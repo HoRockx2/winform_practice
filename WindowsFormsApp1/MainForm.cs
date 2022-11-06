@@ -7,17 +7,19 @@ using WindowsFormsApp1.interop;
 using WindowsFormsApp1.model;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using UtilityModule;
+using System.Reflection;
 
 namespace WindowsFormsApp1
 {
     public partial class MainForm : Form
     {
         private bool isNeedToExit = false;
-        private KeyEventHandler keyEventHandler = null;
+        private UtilityModule.KeyEventHandler keyEventHandler = null;
         private Fetch fetch;
         private List<DetailModel> commandList = new List<DetailModel>();
         private List<Tuple<int, string>> searchResult = new List<Tuple<int, string>>();
-        private FileIO fileIO = new FileIO();
+        private FileIO<DetailModel> fileIO = new FileIO<DetailModel>(Assembly.GetExecutingAssembly().GetName().Name, "commands.dat");
         private List<TableLayoutPanel> commandTextLayoutList = new List<TableLayoutPanel>();
         private List<TextBox> commandTextBoxList = new List<TextBox>();
         private const string COMMAND_CONTROL_NAME_PREFIX = "command";
@@ -31,7 +33,7 @@ namespace WindowsFormsApp1
 
             this.Text = AssemblyGetter.GetTitle();
 
-            keyEventHandler = new KeyEventHandler();
+            keyEventHandler = new UtilityModule.KeyEventHandler();
             RegisterHotKey();
 
             fetch = new Fetch();

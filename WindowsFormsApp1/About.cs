@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using UtilityModule;
+using WindowsFormsApp1.model;
 
 namespace WindowsFormsApp1
 {
@@ -19,7 +21,7 @@ namespace WindowsFormsApp1
 
             titleLabel.Text = AssemblyGetter.GetTitle();
             descriptionTextBox.Text = AssemblyGetter.GetDescription();
-            FilePath.Text = FileIO.FilePath;
+            FilePath.Text = FileIO<DetailModel>.FilePath;
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

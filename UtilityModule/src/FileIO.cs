@@ -1,31 +1,30 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using WindowsFormsApp1.model;
 using System.IO;
-using Newtonsoft.Json;
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
-namespace WindowsFormsApp1
+namespace UtilityModule
 {
-    public class FileIO
+    public class FileIO<T>
     {
-        private static string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Assembly.GetExecutingAssembly().GetName().Name);
+        //private static string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Assembly.GetExecutingAssembly().GetName().Name);
         private readonly string fullPath;
 
-        public static string FilePath => filePath;
+        public static string FilePath => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-        public FileIO()
+        public FileIO(string applicationName, string fileName)
         {
             Logger.Start();
 
-            fullPath = Path.Combine(filePath, "commands.dat");
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), applicationName);
+            fullPath = Path.Combine(filePath, fileName);
             
             Directory.CreateDirectory(filePath);
         }
 
-        public async void SaveDataAsync(List<DetailModel> commandList)
+        public async void SaveDataAsync(List<T> commandList)
         {
             Logger.Start();
 

@@ -2,8 +2,7 @@
 using System.Windows.Forms;
 using WindowsFormsApp1.interop;
 
-
-namespace WindowsFormsApp1
+namespace UtilityModule
 {
     public class KeyEventHandler
     {
