@@ -26,6 +26,7 @@ namespace WindowsFormsApp1
         private IntPtr topWindowHandler = IntPtr.Zero;
 
         delegate void DetailPopupOKResultHandelr(DetailModel result);
+        delegate void TaskDetailPopupOKResultHandler(TaskModel retModel);
 
         public MainForm()
         {
@@ -57,7 +58,7 @@ namespace WindowsFormsApp1
 
             base.OnShown(e);
 
-            if(searchInputField.Text.Length == 0)
+            if(commandNTipSearchInputField.Text.Length == 0)
             {
                 ShowAllCommandList();
             }
@@ -107,11 +108,6 @@ namespace WindowsFormsApp1
 
             Keys key = Keys.Space | Keys.Control | Keys.Shift;
             keyEventHandler.RegisterHotKey(this, key);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            searchInputField.Select();
         }
 
         protected override void WndProc(ref Message m)
@@ -177,7 +173,17 @@ namespace WindowsFormsApp1
 
             if(topWindowHandler == this.Handle)
             {
-                searchInputField.Focus();
+                // TODO: 
+                var selectedTab = tabControl.SelectedTab;
+                if (selectedTab == commandAndTipTabPage)
+                {
+                    commandNTipSearchInputField.Focus();
+
+                }
+                else if(selectedTab == taskTabPage)
+                {
+
+                }
             }
         }
 
@@ -307,6 +313,26 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void ShowTaskDetailPopup(TaskDetailPopupOKResultHandler retOKhandler)
+        {
+            Logger.Start();
+
+            using(var taskDetailPopup = new TaskDetail())
+            {
+                SetTopWindow(taskDetailPopup.Handle);
+                var ret = taskDetailPopup.ShowDialog();
+
+                switch (ret) {
+                    case DialogResult.OK:
+                        Logger.Info("task detail dialog result is ok");
+                        retOKhandler?.Invoke(taskDetailPopup.ResultModel);
+                        break;
+                }
+
+                SetTopWindow(this.Handle);
+            }
+        }
+
         private void ShowCreateNewCommandPopup()
         {
             Logger.Start();
@@ -335,17 +361,24 @@ namespace WindowsFormsApp1
             //UpdateDictionary();
         }
 
+        private void ResetCommandsAndTipView()
+        {
+            Logger.Start();
+
+            commandNTipSearchInputField.Text = "";
+            ShowAllCommandList();
+
+            descriptionTextBox.Text = "";
+            commandsPanel.Controls.Clear();
+        }
+
         private void NotifyCommandListChanged()
         {
             Logger.Start();
 
             fileIO.SaveDataAsync(commandList);
 
-            searchInputField.Text = "";
-            ShowAllCommandList();
-
-            descriptionTextBox.Text = "";
-            commandsPanel.Controls.Clear();
+            ResetCommandsAndTipView();
         }
 
         private void OnCommandListBoxKeyDown(object sender, KeyEventArgs e)
@@ -501,6 +534,27 @@ namespace WindowsFormsApp1
             Logger.Start();
 
             ExitProgram();
+        }
+
+        private void CommandAndTipTabPage_Enter(object sender, System.EventArgs e)
+        {
+            Logger.Start();
+
+            ResetCommandsAndTipView();
+        }
+
+        private void OnAddTaskButton(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            ShowTaskDetailPopup(OnOkResultOfTaskDetailPopup);
+        }
+
+        private void OnOkResultOfTaskDetailPopup(TaskModel retModel)
+        {
+            Logger.Start();
+
+            Logger.Info(retModel.ToString());
         }
     }
 }

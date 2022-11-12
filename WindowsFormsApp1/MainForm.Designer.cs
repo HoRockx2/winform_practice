@@ -52,14 +52,24 @@ namespace WindowsFormsApp1
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchInputField = new System.Windows.Forms.TextBox();
+            this.commandNTipSearchInputField = new System.Windows.Forms.TextBox();
             this.commandListBox = new System.Windows.Forms.ListBox();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.commandAndTipTabPage = new System.Windows.Forms.TabPage();
+            this.taskTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.addTask = new System.Windows.Forms.Button();
+            this.taskSearchInputField = new System.Windows.Forms.TextBox();
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.commandAndTipTabPage.SuspendLayout();
+            this.taskTabPage.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip
@@ -130,10 +140,10 @@ namespace WindowsFormsApp1
             this.bottomPanel.Controls.Add(this.groupBox1);
             this.bottomPanel.Controls.Add(this.panel1);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomPanel.Location = new System.Drawing.Point(0, 171);
+            this.bottomPanel.Location = new System.Drawing.Point(3, 262);
             this.bottomPanel.Margin = new System.Windows.Forms.Padding(5);
             this.bottomPanel.Name = "bottomPanel";
-            this.bottomPanel.Size = new System.Drawing.Size(706, 246);
+            this.bottomPanel.Size = new System.Drawing.Size(906, 246);
             this.bottomPanel.TabIndex = 6;
             // 
             // groupBox2
@@ -142,7 +152,7 @@ namespace WindowsFormsApp1
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 67);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(706, 128);
+            this.groupBox2.Size = new System.Drawing.Size(906, 128);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Commands";
@@ -150,12 +160,12 @@ namespace WindowsFormsApp1
             // commandsPanel
             // 
             this.commandsPanel.AutoScroll = true;
-            this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 686F));
+            this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 880F));
             this.commandsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commandsPanel.Location = new System.Drawing.Point(3, 17);
             this.commandsPanel.Name = "commandsPanel";
             this.commandsPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.commandsPanel.Size = new System.Drawing.Size(700, 108);
+            this.commandsPanel.Size = new System.Drawing.Size(900, 108);
             this.commandsPanel.TabIndex = 7;
             // 
             // groupBox1
@@ -164,7 +174,7 @@ namespace WindowsFormsApp1
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(706, 67);
+            this.groupBox1.Size = new System.Drawing.Size(906, 67);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Description";
@@ -178,7 +188,7 @@ namespace WindowsFormsApp1
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ReadOnly = true;
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(700, 47);
+            this.descriptionTextBox.Size = new System.Drawing.Size(900, 47);
             this.descriptionTextBox.TabIndex = 5;
             // 
             // panel1
@@ -189,7 +199,7 @@ namespace WindowsFormsApp1
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 195);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(706, 51);
+            this.panel1.Size = new System.Drawing.Size(906, 51);
             this.panel1.TabIndex = 6;
             // 
             // menuStrip1
@@ -199,7 +209,7 @@ namespace WindowsFormsApp1
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(706, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(920, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -257,41 +267,102 @@ namespace WindowsFormsApp1
             // 
             // searchInputField
             // 
-            this.searchInputField.Dock = System.Windows.Forms.DockStyle.Top;
-            this.searchInputField.Location = new System.Drawing.Point(0, 24);
-            this.searchInputField.Name = "searchInputField";
-            this.searchInputField.Size = new System.Drawing.Size(706, 21);
-            this.searchInputField.TabIndex = 7;
-            this.searchInputField.TextChanged += new System.EventHandler(this.OnTextChanged);
+            this.commandNTipSearchInputField.Dock = System.Windows.Forms.DockStyle.Top;
+            this.commandNTipSearchInputField.Location = new System.Drawing.Point(3, 3);
+            this.commandNTipSearchInputField.Name = "searchInputField";
+            this.commandNTipSearchInputField.Size = new System.Drawing.Size(906, 21);
+            this.commandNTipSearchInputField.TabIndex = 7;
+            this.commandNTipSearchInputField.TextChanged += new System.EventHandler(this.OnTextChanged);
             // 
             // commandListBox
             // 
             this.commandListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commandListBox.FormattingEnabled = true;
             this.commandListBox.ItemHeight = 12;
-            this.commandListBox.Location = new System.Drawing.Point(0, 45);
+            this.commandListBox.Location = new System.Drawing.Point(3, 24);
             this.commandListBox.Name = "commandListBox";
-            this.commandListBox.Size = new System.Drawing.Size(706, 126);
+            this.commandListBox.Size = new System.Drawing.Size(906, 238);
             this.commandListBox.TabIndex = 8;
             this.commandListBox.SelectedIndexChanged += new System.EventHandler(this.OnCommandListBoxSelectedIndexChanged);
             this.commandListBox.DoubleClick += new System.EventHandler(this.OnCommandListBoxDoubleClick);
             this.commandListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCommandListBoxKeyDown);
             // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.commandAndTipTabPage);
+            this.tabControl.Controls.Add(this.taskTabPage);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 24);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(920, 537);
+            this.tabControl.TabIndex = 9;
+            // 
+            // commandAndTipTabPage
+            // 
+            this.commandAndTipTabPage.Controls.Add(this.commandListBox);
+            this.commandAndTipTabPage.Controls.Add(this.commandNTipSearchInputField);
+            this.commandAndTipTabPage.Controls.Add(this.bottomPanel);
+            this.commandAndTipTabPage.Location = new System.Drawing.Point(4, 22);
+            this.commandAndTipTabPage.Name = "commandAndTipTabPage";
+            this.commandAndTipTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.commandAndTipTabPage.Size = new System.Drawing.Size(912, 511);
+            this.commandAndTipTabPage.TabIndex = 0;
+            this.commandAndTipTabPage.Text = "Commands&Tip";
+            this.commandAndTipTabPage.UseVisualStyleBackColor = true;
+            // 
+            // taskPage
+            // 
+            this.taskTabPage.Controls.Add(this.taskSearchInputField);
+            this.taskTabPage.Controls.Add(this.groupBox3);
+            this.taskTabPage.Location = new System.Drawing.Point(4, 22);
+            this.taskTabPage.Name = "taskPage";
+            this.taskTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.taskTabPage.Size = new System.Drawing.Size(912, 511);
+            this.taskTabPage.TabIndex = 1;
+            this.taskTabPage.Text = "Tasks";
+            this.taskTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.addTask);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Location = new System.Drawing.Point(3, 408);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(906, 100);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Control Panel";
+            // 
+            // addTask
+            // 
+            this.addTask.Location = new System.Drawing.Point(365, 49);
+            this.addTask.Name = "addTask";
+            this.addTask.Size = new System.Drawing.Size(75, 23);
+            this.addTask.TabIndex = 0;
+            this.addTask.Text = "Add Task";
+            this.addTask.UseVisualStyleBackColor = true;
+            this.addTask.Click += new System.EventHandler(this.OnAddTaskButton);
+            // 
+            // taskSearchInputField
+            // 
+            this.taskSearchInputField.Location = new System.Drawing.Point(334, 17);
+            this.taskSearchInputField.Name = "taskSearchInputField";
+            this.taskSearchInputField.Size = new System.Drawing.Size(215, 21);
+            this.taskSearchInputField.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 417);
-            this.Controls.Add(this.commandListBox);
-            this.Controls.Add(this.searchInputField);
+            this.ClientSize = new System.Drawing.Size(920, 561);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.bottomPanel);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Title";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnFormKeyDown);
             this.contextMenuStrip.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
@@ -302,6 +373,12 @@ namespace WindowsFormsApp1
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabControl.ResumeLayout(false);
+            this.commandAndTipTabPage.ResumeLayout(false);
+            this.commandAndTipTabPage.PerformLayout();
+            this.taskTabPage.ResumeLayout(false);
+            this.taskTabPage.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,11 +404,17 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.TextBox searchInputField;
+        private System.Windows.Forms.TextBox commandNTipSearchInputField;
         private System.Windows.Forms.ListBox commandListBox;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage commandAndTipTabPage;
+        private System.Windows.Forms.TabPage taskTabPage;
+        private System.Windows.Forms.TextBox taskSearchInputField;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button addTask;
     }
 }
 
