@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,15 @@ namespace WindowsFormsApp1.model
         public string Description { get; set; }
         public TaskProgress Progress {get; set;}
         public DateTime StartDate { get; set; }
+
+        [JsonIgnore]
+        public string StartDateStr
+        { 
+            get
+            {
+                return StartDate.ToShortDateString() ?? "no data";
+            }
+        }
 
         public override string ToString()
         {

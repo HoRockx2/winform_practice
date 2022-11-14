@@ -57,9 +57,13 @@ namespace WindowsFormsApp1
             this.tabControl = new System.Windows.Forms.TabControl();
             this.commandAndTipTabPage = new System.Windows.Forms.TabPage();
             this.taskTabPage = new System.Windows.Forms.TabPage();
+            this.taskListView = new System.Windows.Forms.ListView();
+            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Progress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StartDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.taskSearchInputField = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.addTask = new System.Windows.Forms.Button();
-            this.taskSearchInputField = new System.Windows.Forms.TextBox();
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -265,11 +269,11 @@ namespace WindowsFormsApp1
             this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnAboutClick);
             // 
-            // searchInputField
+            // commandNTipSearchInputField
             // 
             this.commandNTipSearchInputField.Dock = System.Windows.Forms.DockStyle.Top;
             this.commandNTipSearchInputField.Location = new System.Drawing.Point(3, 3);
-            this.commandNTipSearchInputField.Name = "searchInputField";
+            this.commandNTipSearchInputField.Name = "commandNTipSearchInputField";
             this.commandNTipSearchInputField.Size = new System.Drawing.Size(906, 21);
             this.commandNTipSearchInputField.TabIndex = 7;
             this.commandNTipSearchInputField.TextChanged += new System.EventHandler(this.OnTextChanged);
@@ -311,17 +315,59 @@ namespace WindowsFormsApp1
             this.commandAndTipTabPage.Text = "Commands&Tip";
             this.commandAndTipTabPage.UseVisualStyleBackColor = true;
             // 
-            // taskPage
+            // taskTabPage
             // 
+            this.taskTabPage.Controls.Add(this.taskListView);
             this.taskTabPage.Controls.Add(this.taskSearchInputField);
             this.taskTabPage.Controls.Add(this.groupBox3);
             this.taskTabPage.Location = new System.Drawing.Point(4, 22);
-            this.taskTabPage.Name = "taskPage";
+            this.taskTabPage.Name = "taskTabPage";
             this.taskTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.taskTabPage.Size = new System.Drawing.Size(912, 511);
             this.taskTabPage.TabIndex = 1;
             this.taskTabPage.Text = "Tasks";
             this.taskTabPage.UseVisualStyleBackColor = true;
+            this.taskTabPage.Enter += new System.EventHandler(this.OnEnterTasksTabPage);
+            // 
+            // taskListView
+            // 
+            this.taskListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Title,
+            this.Progress,
+            this.StartDate});
+            this.taskListView.FullRowSelect = true;
+            this.taskListView.GridLines = true;
+            this.taskListView.HideSelection = false;
+            this.taskListView.Location = new System.Drawing.Point(54, 106);
+            this.taskListView.Name = "taskListView";
+            this.taskListView.Size = new System.Drawing.Size(677, 153);
+            this.taskListView.TabIndex = 2;
+            this.taskListView.UseCompatibleStateImageBehavior = false;
+            this.taskListView.View = System.Windows.Forms.View.Details;
+            this.taskListView.DoubleClick += new System.EventHandler(this.OnTaskListDoubleClick);
+            this.taskListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnTaskListViewKeyDown);
+            // 
+            // Title
+            // 
+            this.Title.Text = "Title";
+            this.Title.Width = 400;
+            // 
+            // Progress
+            // 
+            this.Progress.Text = "Progress";
+            this.Progress.Width = 96;
+            // 
+            // StartDate
+            // 
+            this.StartDate.Text = "StartDate";
+            this.StartDate.Width = 177;
+            // 
+            // taskSearchInputField
+            // 
+            this.taskSearchInputField.Location = new System.Drawing.Point(334, 17);
+            this.taskSearchInputField.Name = "taskSearchInputField";
+            this.taskSearchInputField.Size = new System.Drawing.Size(215, 21);
+            this.taskSearchInputField.TabIndex = 1;
             // 
             // groupBox3
             // 
@@ -343,13 +389,6 @@ namespace WindowsFormsApp1
             this.addTask.Text = "Add Task";
             this.addTask.UseVisualStyleBackColor = true;
             this.addTask.Click += new System.EventHandler(this.OnAddTaskButton);
-            // 
-            // taskSearchInputField
-            // 
-            this.taskSearchInputField.Location = new System.Drawing.Point(334, 17);
-            this.taskSearchInputField.Name = "taskSearchInputField";
-            this.taskSearchInputField.Size = new System.Drawing.Size(215, 21);
-            this.taskSearchInputField.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -415,6 +454,10 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TextBox taskSearchInputField;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button addTask;
+        private System.Windows.Forms.ListView taskListView;
+        private System.Windows.Forms.ColumnHeader Title;
+        private System.Windows.Forms.ColumnHeader Progress;
+        private System.Windows.Forms.ColumnHeader StartDate;
     }
 }
 

@@ -35,6 +35,7 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.progressComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -96,11 +97,21 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Create Date";
             // 
+            // progressComboBox
+            // 
+            this.progressComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.progressComboBox.FormattingEnabled = true;
+            this.progressComboBox.Location = new System.Drawing.Point(444, 149);
+            this.progressComboBox.Name = "progressComboBox";
+            this.progressComboBox.Size = new System.Drawing.Size(212, 20);
+            this.progressComboBox.TabIndex = 7;
+            // 
             // TaskDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.progressComboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.descriptionTextBox);
@@ -108,6 +119,7 @@
             this.Controls.Add(this.createDateTimePicker);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.KeyPreview = true;
             this.Name = "TaskDetail";
             this.Text = "TaskDetail";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
@@ -125,5 +137,6 @@
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox progressComboBox;
     }
 }

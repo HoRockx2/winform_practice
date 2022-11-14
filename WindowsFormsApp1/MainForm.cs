@@ -9,6 +9,9 @@ using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using UtilityModule;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Linq;
+using System.ComponentModel;
 
 namespace WindowsFormsApp1
 {
@@ -20,10 +23,13 @@ namespace WindowsFormsApp1
         private List<DetailModel> commandList = new List<DetailModel>();
         private List<Tuple<int, string>> searchResult = new List<Tuple<int, string>>();
         private FileIO<DetailModel> fileIO = new FileIO<DetailModel>(Assembly.GetExecutingAssembly().GetName().Name, "commands.dat");
+        private FileIO<TaskModel> taskFileIO = new FileIO<TaskModel>(Assembly.GetExecutingAssembly().GetName().Name, "tasks.dat");
         private List<TableLayoutPanel> commandTextLayoutList = new List<TableLayoutPanel>();
         private List<TextBox> commandTextBoxList = new List<TextBox>();
         private const string COMMAND_CONTROL_NAME_PREFIX = "command";
         private IntPtr topWindowHandler = IntPtr.Zero;
+
+        private List<TaskModel> taskList = new List<TaskModel>();
 
         delegate void DetailPopupOKResultHandelr(DetailModel result);
         delegate void TaskDetailPopupOKResultHandler(TaskModel retModel);
@@ -78,6 +84,15 @@ namespace WindowsFormsApp1
             }
 
             commandList = JsonConvert.DeserializeObject<List<DetailModel>>(stringData);
+
+            stringData = taskFileIO.LoadData();
+
+            if (string.IsNullOrWhiteSpace(stringData))
+            {
+                return;
+            }
+
+            taskList = JsonConvert.DeserializeObject<List<TaskModel>>(stringData);
         }
 
         private void PrintCommandList()
@@ -313,11 +328,29 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void ShowTaskDetailPopup(TaskDetailPopupOKResultHandler retOKhandler)
+        private void ShowTaskDetailPopupWithModel(int index)
         {
             Logger.Start();
 
-            using(var taskDetailPopup = new TaskDetail())
+            if(index < 0 || taskList.Count <= index)
+            {
+                Logger.Info($"index is wrong: [{index}]");
+                return;
+            }
+
+            var taskDetail = taskList[index];
+            ShowTaskDetailPopup((retModel) =>
+            {
+                taskList[index] = retModel;
+                NotifyTasklistChanged();
+            }, taskDetail);
+        }
+
+        private void ShowTaskDetailPopup(TaskDetailPopupOKResultHandler retOKhandler, TaskModel existedTaskModel = null)
+        {
+            Logger.Start();
+
+            using(var taskDetailPopup = new TaskDetail(existedTaskModel))
             {
                 SetTopWindow(taskDetailPopup.Handle);
                 var ret = taskDetailPopup.ShowDialog();
@@ -381,6 +414,14 @@ namespace WindowsFormsApp1
             ResetCommandsAndTipView();
         }
 
+        private void NotifyTasklistChanged()
+        {
+            Logger.Start();
+
+            taskFileIO.SaveDataAsync(taskList);
+            ResetTaskListView();
+        }
+
         private void OnCommandListBoxKeyDown(object sender, KeyEventArgs e)
         {
             Logger.Start();
@@ -388,6 +429,21 @@ namespace WindowsFormsApp1
             if(e.KeyCode == Keys.Enter)
             {
                 ShowDetailPopupWithDetailModel(commandListBox.SelectedIndex);
+            }
+        }
+
+        private void OnTaskListViewKeyDown(object sender, KeyEventArgs e)
+        {
+            Logger.Start();
+
+            if(e.KeyCode == Keys.Enter)
+            {
+                var indices = taskListView.SelectedIndices;
+
+                if (indices.Count > 0)
+                {
+                    ShowTaskDetailPopupWithModel(indices[0]);
+                }
             }
         }
 
@@ -420,6 +476,18 @@ namespace WindowsFormsApp1
             if(clickedIndex != -1)
             {
                 ShowDetailPopupWithDetailModel(clickedIndex);
+            }
+        }
+
+        private void OnTaskListDoubleClick(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            var indices = taskListView.SelectedIndices;
+
+            if(indices.Count > 0)
+            {
+                ShowTaskDetailPopupWithModel(indices[0]);
             }
         }
 
@@ -536,17 +604,9 @@ namespace WindowsFormsApp1
             ExitProgram();
         }
 
-        private void CommandAndTipTabPage_Enter(object sender, System.EventArgs e)
-        {
-            Logger.Start();
-
-            ResetCommandsAndTipView();
-        }
-
         private void OnAddTaskButton(object sender, EventArgs e)
         {
             Logger.Start();
-
             ShowTaskDetailPopup(OnOkResultOfTaskDetailPopup);
         }
 
@@ -555,6 +615,40 @@ namespace WindowsFormsApp1
             Logger.Start();
 
             Logger.Info(retModel.ToString());
+            taskList.Add(retModel);
+            NotifyTasklistChanged();
+        }
+
+        private void OnEnterTasksTabPage(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            ResetTaskListView();
+        }
+
+        private void ResetTaskListView()
+        {
+            Logger.Start();
+
+            taskListView.Items.Clear();
+
+            ListViewItem[] items = new ListViewItem[taskList.Count];
+
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                string[] row = { taskList[i].Title, taskList[i].Progress.ToString(), taskList[i].StartDateStr };
+                items[i] = new ListViewItem(row);
+                //taskListView.Items.Add(new ListViewItem(row));
+            }
+
+            taskListView.Items.AddRange(items);
+        }
+
+        private void OnEnterCommandAndTipTabPage(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            ResetCommandsAndTipView();
         }
     }
 }

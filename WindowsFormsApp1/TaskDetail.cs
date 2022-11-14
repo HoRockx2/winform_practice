@@ -19,9 +19,23 @@ namespace WindowsFormsApp1
         public TaskDetail()
         {
             InitializeComponent();
+
+            progressComboBox.DataSource = Enum.GetValues(typeof(TaskProgress));
         }
 
+        public TaskDetail(TaskModel existedTaskModel) : this()
+        {
+            Logger.Start();
 
+            ResultModel = existedTaskModel;
+            titleTextBox.Text = existedTaskModel?.Title ?? "";
+            descriptionTextBox.Text = existedTaskModel?.Description ?? "";
+            
+            if(ResultModel != null)
+            {
+                createDateTimePicker.Value = ResultModel.StartDate;
+            }
+        }
 
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
@@ -33,12 +47,14 @@ namespace WindowsFormsApp1
                 return;
             }
 
+            //var progress = (TaskProgress)Enum.Parse(typeof(TaskProgress), progressComboBox.SelectedText, true);
+
             ResultModel = new TaskModel
             {
                 Title = titleTextBox.Text,
                 Description = descriptionTextBox.Text,
-                Progress = TaskProgress.TODO,
-                StartDate = createDateTimePicker.Value.Date
+                Progress = (TaskProgress)progressComboBox.SelectedItem,
+                StartDate = createDateTimePicker.Value.Date,
             };
 
             this.DialogResult = DialogResult.OK;
@@ -52,6 +68,23 @@ namespace WindowsFormsApp1
             {
                 this.DialogResult = DialogResult.Cancel;
                 this.Hide();
+            }
+        }
+
+        private void OnProgressComboBoxIndexChanged(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            if(sender is ComboBox cb)
+            {
+                if(Enum.TryParse<TaskProgress>(cb.SelectedText, out TaskProgress progress))
+                {
+
+                }
+                else
+                {
+                    throw new Exception($"wrong selected Text : [{cb.SelectedText}]");
+                }
             }
         }
     }
