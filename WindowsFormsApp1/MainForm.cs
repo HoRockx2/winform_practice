@@ -638,7 +638,14 @@ namespace WindowsFormsApp1
             {
                 string[] row = { taskList[i].Title, taskList[i].Progress.ToString(), taskList[i].StartDateStr };
                 items[i] = new ListViewItem(row);
-                //taskListView.Items.Add(new ListViewItem(row));
+                items[i].SubItems[1].BackColor = taskList[i].Progress switch
+                {
+                    TaskProgress.TODO => Color.White,
+                    TaskProgress.IN_PROGRESS => Color.Yellow,
+                    TaskProgress.DONE => Color.Green,
+                    _ => throw new Exception("wrong TaskProgress was input")
+                };
+                items[i].UseItemStyleForSubItems = false;
             }
 
             taskListView.Items.AddRange(items);

@@ -30,7 +30,8 @@ namespace WindowsFormsApp1
             ResultModel = existedTaskModel;
             titleTextBox.Text = existedTaskModel?.Title ?? "";
             descriptionTextBox.Text = existedTaskModel?.Description ?? "";
-            
+            progressComboBox.SelectedItem = existedTaskModel?.Progress ?? TaskProgress.TODO;
+
             if(ResultModel != null)
             {
                 createDateTimePicker.Value = ResultModel.StartDate;
@@ -68,23 +69,6 @@ namespace WindowsFormsApp1
             {
                 this.DialogResult = DialogResult.Cancel;
                 this.Hide();
-            }
-        }
-
-        private void OnProgressComboBoxIndexChanged(object sender, EventArgs e)
-        {
-            Logger.Start();
-
-            if(sender is ComboBox cb)
-            {
-                if(Enum.TryParse<TaskProgress>(cb.SelectedText, out TaskProgress progress))
-                {
-
-                }
-                else
-                {
-                    throw new Exception($"wrong selected Text : [{cb.SelectedText}]");
-                }
             }
         }
     }
