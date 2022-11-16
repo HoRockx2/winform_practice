@@ -64,6 +64,7 @@ namespace WindowsFormsApp1
             this.taskSearchInputField = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.addTask = new System.Windows.Forms.Button();
+            this.openGithubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -148,7 +149,7 @@ namespace WindowsFormsApp1
             this.bottomPanel.Controls.Add(this.panel1);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomPanel.Location = new System.Drawing.Point(3, 332);
-            this.bottomPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.bottomPanel.Margin = new System.Windows.Forms.Padding(6);
             this.bottomPanel.Name = "bottomPanel";
             this.bottomPanel.Size = new System.Drawing.Size(1037, 308);
             this.bottomPanel.TabIndex = 6;
@@ -169,7 +170,7 @@ namespace WindowsFormsApp1
             // commandsPanel
             // 
             this.commandsPanel.AutoScroll = true;
-            this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1006F));
+            this.commandsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1009F));
             this.commandsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commandsPanel.Location = new System.Drawing.Point(3, 22);
             this.commandsPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -269,7 +270,8 @@ namespace WindowsFormsApp1
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.openGithubToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "Help";
@@ -277,7 +279,7 @@ namespace WindowsFormsApp1
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnAboutClick);
             // 
@@ -412,6 +414,13 @@ namespace WindowsFormsApp1
             this.addTask.UseVisualStyleBackColor = true;
             this.addTask.Click += new System.EventHandler(this.OnAddTaskButton);
             // 
+            // openGithubToolStripMenuItem
+            // 
+            this.openGithubToolStripMenuItem.Name = "openGithubToolStripMenuItem";
+            this.openGithubToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openGithubToolStripMenuItem.Text = "Open Github";
+            this.openGithubToolStripMenuItem.Click += new System.EventHandler(this.OnClickOpenGithub);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -481,6 +490,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ColumnHeader Progress;
         private System.Windows.Forms.ColumnHeader StartDate;
+        private System.Windows.Forms.ToolStripMenuItem openGithubToolStripMenuItem;
     }
 }
 

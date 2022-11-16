@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Linq;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
@@ -657,6 +658,15 @@ namespace WindowsFormsApp1
             Logger.Start();
 
             ResetCommandsAndTipView();
+        }
+
+        private void OnClickOpenGithub(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            const string githubURL = "https://github.com/";
+
+            Process.Start(githubURL);
         }
     }
 }
