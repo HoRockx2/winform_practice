@@ -36,6 +36,9 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.progressComboBox = new System.Windows.Forms.ComboBox();
+            this.rateOfProgressTrackBar = new System.Windows.Forms.TrackBar();
+            this.slideValueTextLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.rateOfProgressTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -84,7 +87,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(49, 488);
+            this.saveButton.Location = new System.Drawing.Point(48, 501);
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(86, 29);
@@ -111,12 +114,33 @@
             this.progressComboBox.Name = "progressComboBox";
             this.progressComboBox.Size = new System.Drawing.Size(242, 23);
             this.progressComboBox.TabIndex = 6;
+            this.progressComboBox.SelectedIndexChanged += new System.EventHandler(this.OnComboBoxChanged);
+            // 
+            // rateOfProgressTrackBar
+            // 
+            this.rateOfProgressTrackBar.LargeChange = 1;
+            this.rateOfProgressTrackBar.Location = new System.Drawing.Point(212, 501);
+            this.rateOfProgressTrackBar.Name = "rateOfProgressTrackBar";
+            this.rateOfProgressTrackBar.Size = new System.Drawing.Size(275, 56);
+            this.rateOfProgressTrackBar.TabIndex = 8;
+            this.rateOfProgressTrackBar.ValueChanged += new System.EventHandler(this.OnSlideValueChanged);
+            // 
+            // slideValueTextLabel
+            // 
+            this.slideValueTextLabel.AutoSize = true;
+            this.slideValueTextLabel.Location = new System.Drawing.Point(503, 515);
+            this.slideValueTextLabel.Name = "slideValueTextLabel";
+            this.slideValueTextLabel.Size = new System.Drawing.Size(45, 15);
+            this.slideValueTextLabel.TabIndex = 9;
+            this.slideValueTextLabel.Text = "label4";
             // 
             // TaskDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 562);
+            this.Controls.Add(this.slideValueTextLabel);
+            this.Controls.Add(this.rateOfProgressTrackBar);
             this.Controls.Add(this.progressComboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.saveButton);
@@ -130,6 +154,7 @@
             this.Name = "TaskDetail";
             this.Text = "TaskDetail";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.rateOfProgressTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +170,7 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox progressComboBox;
+        private System.Windows.Forms.TrackBar rateOfProgressTrackBar;
+        private System.Windows.Forms.Label slideValueTextLabel;
     }
 }

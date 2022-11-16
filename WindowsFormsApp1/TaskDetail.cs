@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UtilityModule;
 using WindowsFormsApp1.model;
@@ -21,6 +14,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
             progressComboBox.DataSource = Enum.GetValues(typeof(TaskProgress));
+            slideValueTextLabel.Text = "0";
         }
 
         public TaskDetail(TaskModel existedTaskModel) : this()
@@ -31,8 +25,10 @@ namespace WindowsFormsApp1
             titleTextBox.Text = existedTaskModel?.Title ?? "";
             descriptionTextBox.Text = existedTaskModel?.Description ?? "";
             progressComboBox.SelectedItem = existedTaskModel?.Progress ?? TaskProgress.TODO;
+            rateOfProgressTrackBar.Value = existedTaskModel?.RateOfProgress ?? 0;
+            slideValueTextLabel.Text = (existedTaskModel?.RateOfProgress * 10).ToString() ?? "0";
 
-            if(ResultModel != null)
+            if (ResultModel != null)
             {
                 createDateTimePicker.Value = ResultModel.StartDate;
             }
@@ -56,6 +52,7 @@ namespace WindowsFormsApp1
                 Description = descriptionTextBox.Text,
                 Progress = (TaskProgress)progressComboBox.SelectedItem,
                 StartDate = createDateTimePicker.Value.Date,
+                RateOfProgress = rateOfProgressTrackBar.Value
             };
 
             this.DialogResult = DialogResult.OK;
@@ -69,6 +66,46 @@ namespace WindowsFormsApp1
             {
                 this.DialogResult = DialogResult.Cancel;
                 this.Hide();
+            }
+        }
+
+        private void OnSlideValueChanged(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            if(sender is TrackBar trackBar)
+            {
+                int adjustedValue = trackBar.Value * 10;
+                slideValueTextLabel.Text = adjustedValue.ToString();
+                var currentStatus = (TaskProgress)progressComboBox.SelectedItem;
+
+                if (currentStatus != TaskProgress.BACK_LOG)
+                {
+                    progressComboBox.SelectedItem = adjustedValue switch
+                    {
+                        0 => TaskProgress.TODO,
+                        100 => TaskProgress.DONE,
+                        _ => TaskProgress.IN_PROGRESS
+                    };
+                }
+            }
+        }
+
+        private void OnComboBoxChanged(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            if(sender is ComboBox comboBox)
+            {
+                switch ((TaskProgress)comboBox.SelectedItem)
+                {
+                    case TaskProgress.TODO: 
+                        rateOfProgressTrackBar.Value = 0;
+                        break;
+                    case TaskProgress.DONE:
+                        rateOfProgressTrackBar.Value = 10;
+                        break;
+                }
             }
         }
     }

@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WindowsFormsApp1.model
 {
@@ -22,6 +18,22 @@ namespace WindowsFormsApp1.model
         public TaskProgress Progress {get; set;}
         public DateTime StartDate { get; set; }
 
+        private int rateOfProgress;
+
+        public int RateOfProgress 
+        { 
+            get => rateOfProgress;
+            set
+            {
+                if(value < 0 || 10 < value)
+                {
+                    throw new Exception($"unexpected value incoming [{value}]");
+                }
+
+                rateOfProgress = value;
+            } 
+        }
+
         [JsonIgnore]
         public string StartDateStr
         { 
@@ -31,10 +43,7 @@ namespace WindowsFormsApp1.model
             }
         }
 
-        public override string ToString()
-        {
-            //var builder = new StringBuilder($"Title : {Title} | Desc : {Description} \nProgress : {Progress} | StartDate: {StartDate.ToShortDateString()}");
-            return $"Title : {Title} | Desc : {Description} \nProgress : {Progress} | StartDate: {StartDate.ToShortDateString()}";
-        }
+        public override string ToString() =>
+            $"Title : {Title} | Desc : {Description} \nProgress : {Progress} | StartDate: {StartDate.ToShortDateString()}";
     }
 }
