@@ -11,7 +11,8 @@ namespace WindowsFormsApp1.model
     {
         TODO,
         IN_PROGRESS,
-        DONE
+        DONE,
+        BACK_LOG
     }
 
     public class TaskModel

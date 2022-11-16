@@ -643,6 +643,7 @@ namespace WindowsFormsApp1
                     TaskProgress.TODO => Color.White,
                     TaskProgress.IN_PROGRESS => Color.Yellow,
                     TaskProgress.DONE => Color.Green,
+                    TaskProgress.BACK_LOG => Color.LightBlue,
                     _ => throw new Exception("wrong TaskProgress was input")
                 };
                 items[i].UseItemStyleForSubItems = false;
