@@ -9,9 +9,6 @@ using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using UtilityModule;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Linq;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace WindowsFormsApp1
@@ -664,7 +661,7 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            const string githubURL = "https://github.com/";
+            const string githubURL = "https://github.com/HoRockx2/winform_practice";
 
             Process.Start(githubURL);
         }
