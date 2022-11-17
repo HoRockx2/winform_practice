@@ -64,7 +64,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -113,6 +113,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\model\DetailModel.cs" />
     <Compile Include="src\model\TaskModel.cs" />
+    <Compile Include="src\viewModel\TaskViewModel.cs" />
     <Compile Include="TaskDetail.cs">
       <SubType>Form</SubType>
     </Compile>

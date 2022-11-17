@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using UtilityModule;
 using System.Reflection;
 using System.Diagnostics;
+using WindowsFormsApp1.viewModel;
 
 namespace WindowsFormsApp1
 {
@@ -21,16 +22,13 @@ namespace WindowsFormsApp1
         private List<DetailModel> commandList = new List<DetailModel>();
         private List<Tuple<int, string>> searchResult = new List<Tuple<int, string>>();
         private FileIO<DetailModel> fileIO = new FileIO<DetailModel>(Assembly.GetExecutingAssembly().GetName().Name, "commands.dat");
-        private FileIO<TaskModel> taskFileIO = new FileIO<TaskModel>(Assembly.GetExecutingAssembly().GetName().Name, "tasks.dat");
         private List<TableLayoutPanel> commandTextLayoutList = new List<TableLayoutPanel>();
         private List<TextBox> commandTextBoxList = new List<TextBox>();
         private const string COMMAND_CONTROL_NAME_PREFIX = "command";
         private IntPtr topWindowHandler = IntPtr.Zero;
-
-        private List<TaskModel> taskList = new List<TaskModel>();
-
         delegate void DetailPopupOKResultHandelr(DetailModel result);
-        delegate void TaskDetailPopupOKResultHandler(TaskModel retModel);
+
+        private TaskViewModel taskViewModel;
 
         public MainForm()
         {
@@ -42,6 +40,9 @@ namespace WindowsFormsApp1
             RegisterHotKey();
 
             fetch = new Fetch();
+            taskViewModel = new TaskViewModel();
+            taskViewModel.OnTaskListChanged += OnTaskListChanged;
+
             LoadData();
             PrintCommandList();
 
@@ -83,14 +84,7 @@ namespace WindowsFormsApp1
 
             commandList = JsonConvert.DeserializeObject<List<DetailModel>>(stringData);
 
-            stringData = taskFileIO.LoadData();
-
-            if (string.IsNullOrWhiteSpace(stringData))
-            {
-                return;
-            }
-
-            taskList = JsonConvert.DeserializeObject<List<TaskModel>>(stringData);
+            taskViewModel.LoadData();
         }
 
         private void PrintCommandList()
@@ -330,17 +324,10 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            if(index < 0 || taskList.Count <= index)
-            {
-                Logger.Info($"index is wrong: [{index}]");
-                return;
-            }
-
-            var taskDetail = taskList[index];
+            var taskDetail = taskViewModel.GetTaskAt(index);
             ShowTaskDetailPopup((retModel) =>
             {
-                taskList[index] = retModel;
-                NotifyTasklistChanged();
+                taskViewModel.OnOKResultOfTaskDetailPopup(retModel, index);
             }, taskDetail);
         }
 
@@ -412,11 +399,10 @@ namespace WindowsFormsApp1
             ResetCommandsAndTipView();
         }
 
-        private void NotifyTasklistChanged()
+        private void OnTaskListChanged(object sender, EventArgs e)
         {
             Logger.Start();
 
-            taskFileIO.SaveDataAsync(taskList);
             ResetTaskListView();
         }
 
@@ -605,16 +591,7 @@ namespace WindowsFormsApp1
         private void OnAddTaskButton(object sender, EventArgs e)
         {
             Logger.Start();
-            ShowTaskDetailPopup(OnOkResultOfTaskDetailPopup);
-        }
-
-        private void OnOkResultOfTaskDetailPopup(TaskModel retModel)
-        {
-            Logger.Start();
-
-            Logger.Info(retModel.ToString());
-            taskList.Add(retModel);
-            NotifyTasklistChanged();
+            ShowTaskDetailPopup(retModel => taskViewModel.OnOKResultOfTaskDetailPopup(retModel));
         }
 
         private void OnEnterTasksTabPage(object sender, EventArgs e)
@@ -630,22 +607,7 @@ namespace WindowsFormsApp1
 
             taskListView.Items.Clear();
 
-            ListViewItem[] items = new ListViewItem[taskList.Count];
-
-            for (int i = 0; i < taskList.Count; i++)
-            {
-                string[] row = { taskList[i].Title, taskList[i].Progress.ToString(), taskList[i].StartDateStr };
-                items[i] = new ListViewItem(row);
-                items[i].SubItems[1].BackColor = taskList[i].Progress switch
-                {
-                    TaskProgress.TODO => Color.White,
-                    TaskProgress.IN_PROGRESS => Color.Yellow,
-                    TaskProgress.DONE => Color.Green,
-                    TaskProgress.BACK_LOG => Color.LightBlue,
-                    _ => throw new Exception("wrong TaskProgress was input")
-                };
-                items[i].UseItemStyleForSubItems = false;
-            }
+            ListViewItem[] items = taskViewModel.TaskViewItemArr;
 
             taskListView.Items.AddRange(items);
         }
