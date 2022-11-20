@@ -66,6 +66,7 @@ namespace WindowsFormsApp1
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.addTask = new System.Windows.Forms.Button();
             this.goToArchive = new System.Windows.Forms.Button();
+            this.showArchiveButton = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -400,6 +401,7 @@ namespace WindowsFormsApp1
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.showArchiveButton);
             this.groupBox3.Controls.Add(this.goToArchive);
             this.groupBox3.Controls.Add(this.addTask);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -432,6 +434,16 @@ namespace WindowsFormsApp1
             this.goToArchive.Text = "Go to Archive";
             this.goToArchive.UseVisualStyleBackColor = true;
             this.goToArchive.Click += new System.EventHandler(this.OnGoToArchive);
+            // 
+            // showArchiveButton
+            // 
+            this.showArchiveButton.Location = new System.Drawing.Point(379, 32);
+            this.showArchiveButton.Name = "showArchiveButton";
+            this.showArchiveButton.Size = new System.Drawing.Size(117, 23);
+            this.showArchiveButton.TabIndex = 2;
+            this.showArchiveButton.Text = "Show Archive";
+            this.showArchiveButton.UseVisualStyleBackColor = true;
+            this.showArchiveButton.Click += new System.EventHandler(this.OnShowArchiveButton);
             // 
             // MainForm
             // 
@@ -504,6 +516,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ColumnHeader StartDate;
         private System.Windows.Forms.ToolStripMenuItem openGithubToolStripMenuItem;
         private System.Windows.Forms.Button goToArchive;
+        private System.Windows.Forms.Button showArchiveButton;
     }
 }
 

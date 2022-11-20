@@ -15,23 +15,23 @@ namespace WindowsFormsApp1.model
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public TaskProgress Progress {get; set;}
+        public TaskProgress Progress { get; set; }
         public DateTime StartDate { get; set; }
 
         private int rateOfProgress;
 
-        public int RateOfProgress 
-        { 
+        public int RateOfProgress
+        {
             get => rateOfProgress;
             set
             {
-                if(value < 0 || 10 < value)
+                if (value < 0 || 10 < value)
                 {
                     throw new Exception($"unexpected value incoming [{value}]");
                 }
 
                 rateOfProgress = value;
-            } 
+            }
         }
 
         [JsonIgnore]

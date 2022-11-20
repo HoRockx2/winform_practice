@@ -11,6 +11,7 @@ using UtilityModule;
 using System.Reflection;
 using System.Diagnostics;
 using WindowsFormsApp1.viewModel;
+using System.Linq;
 
 namespace WindowsFormsApp1
 {
@@ -630,12 +631,30 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            var indices = taskListView.SelectedIndices;
+            taskViewModel.Archiving(taskListView.SelectedIndices.Cast<int>().ToList());
+        }
 
-            foreach(var index in indices)
+        private void OnShowArchiveButton(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            using (var archiveListView = new TaskArchiveListView(taskViewModel))
             {
-                Logger.Info(index.ToString());
+                SetTopWindow(archiveListView.Handle);
+                DialogResult dialogResult = archiveListView.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    Logger.Info("dialog result is ok");
+                }
+                else if (dialogResult == DialogResult.Cancel)
+                {
+                    Logger.Info("dialog result is cancel");
+                }
+
+                SetTopWindow(this.Handle);
             }
+
         }
     }
 }

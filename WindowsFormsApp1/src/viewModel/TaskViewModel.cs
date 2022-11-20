@@ -16,11 +16,32 @@ namespace WindowsFormsApp1.viewModel
     public class TaskViewModel
     {
         private FileIO<TaskModel> taskFileIO = new FileIO<TaskModel>(Assembly.GetExecutingAssembly().GetName().Name, "tasks.dat");
-        private ObservableCollection<TaskModel> taskList = new ObservableCollection<TaskModel>();
-        private List<ListViewItem> viewItemList;
+        private FileIO<TaskModel> archiveFileIO = new FileIO<TaskModel>(Assembly.GetExecutingAssembly().GetName().Name, "taskArchiving.dat");
+        //private ObservableCollection<TaskModel> taskList = new ObservableCollection<TaskModel>();
+        private List<TaskModel> taskList = new List<TaskModel>();
+        private List<TaskModel> archiveList = new List<TaskModel>();
+        private List<ListViewItem> taskViewItemList;
+        private List<ListViewItem> archiveViewItemList;
         private bool isTaskListUpdated;
+        private bool isArchiveListUpdated;
 
         public event EventHandler OnTaskListChanged;
+
+        public ListViewItem[] ArchiveViewItemArr
+        {
+            get
+            {
+                Logger.Start();
+
+                if(isArchiveListUpdated || archiveViewItemList == null)
+                {
+                    isArchiveListUpdated = false;
+                    UpdateViewItemList(ref archiveViewItemList, archiveList);
+                }
+
+                return archiveViewItemList.ToArray();
+            }
+        }
 
         public ListViewItem[] TaskViewItemArr
         {
@@ -28,13 +49,13 @@ namespace WindowsFormsApp1.viewModel
             {
                 Logger.Start();
 
-                if (isTaskListUpdated || viewItemList == null)
+                if (isTaskListUpdated || taskViewItemList == null)
                 {
                     isTaskListUpdated = false;
-                    UpdateViewItemList();
+                    UpdateViewItemList(ref taskViewItemList, taskList.ToList());
                 }
 
-                return viewItemList.ToArray();
+                return taskViewItemList.ToArray();
             }
         }
 
@@ -42,7 +63,8 @@ namespace WindowsFormsApp1.viewModel
         {
             Logger.Start();
 
-            viewItemList = null;
+            taskViewItemList = null;
+            archiveViewItemList = null;
         }
 
         private void TaskList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -50,14 +72,16 @@ namespace WindowsFormsApp1.viewModel
             Logger.Start();
             isTaskListUpdated = true;
         }
-            
-        private void UpdateViewItemList()
+         
+        
+
+        private void UpdateViewItemList(ref List<ListViewItem> viewItemList, List<TaskModel> originList)
         {
             Logger.Start();
 
             viewItemList = new List<ListViewItem>();
 
-            foreach(var task in taskList)
+            foreach(var task in originList)
             {
                 string[] row = { task.Title, task.Progress.ToString(), task.StartDateStr };
                 var newListViewItem = new ListViewItem(row);
@@ -91,15 +115,27 @@ namespace WindowsFormsApp1.viewModel
         {
             Logger.Start();
 
-            var stringData = taskFileIO.LoadData();
+            var taskListData = taskFileIO.LoadData();
 
-            if (string.IsNullOrWhiteSpace(stringData))
+            if (string.IsNullOrWhiteSpace(taskListData))
             {
                 return;
             }
 
-            taskList = JsonConvert.DeserializeObject<ObservableCollection<TaskModel>>(stringData);
-            taskList.CollectionChanged += TaskList_CollectionChanged;
+            //taskList = JsonConvert.DeserializeObject<ObservableCollection<TaskModel>>(taskListData);
+            //taskList.CollectionChanged += TaskList_CollectionChanged;
+
+            taskList = JsonConvert.DeserializeObject<List<TaskModel>>(taskListData);
+
+            var archivingListData = archiveFileIO.LoadData();
+
+            if (string.IsNullOrWhiteSpace(archivingListData))
+            {
+                return;
+            }
+
+            archiveList = JsonConvert.DeserializeObject<List<TaskModel>>(archivingListData);
+
         }
 
         public void OnOKResultOfTaskDetailPopup(TaskModel retModel)
@@ -125,7 +161,51 @@ namespace WindowsFormsApp1.viewModel
             Logger.Start();
 
             taskFileIO.SaveDataAsync(taskList.ToList());
+            archiveFileIO.SaveDataAsync(archiveList.ToList());
             OnTaskListChanged?.Invoke(this, null);
+        }
+        
+        private void MoveModels(ref List<TaskModel> from, ref List<TaskModel> to, List<int> indices)
+        {
+            Logger.Start();
+
+            var movingList = new List<TaskModel>();
+
+            foreach(var index in indices)
+            {
+                var task = from[index];
+                movingList.Add(task);
+                to.Add(task);
+            }
+
+            foreach(var moving in movingList)
+            {
+                from.Remove(moving);
+            }
+        }
+
+        public void Archiving(List<int> indices)
+        {
+            Logger.Start();
+
+            MoveModels(ref taskList, ref archiveList, indices);
+
+            isArchiveListUpdated = true;
+            isTaskListUpdated = true;
+
+            NotifyTaskListChanged();
+        }
+
+        public void Restore(List<int> indices)
+        {
+            Logger.Start();
+
+            MoveModels(ref archiveList, ref taskList, indices);
+
+            isArchiveListUpdated = true;
+            isTaskListUpdated = true;
+
+            NotifyTaskListChanged();
         }
     }
 }
