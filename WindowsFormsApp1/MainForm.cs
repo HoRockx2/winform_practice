@@ -77,12 +77,10 @@ namespace WindowsFormsApp1
 
             var stringData = fileIO.LoadData();
 
-            if (string.IsNullOrWhiteSpace(stringData))
+            if (!string.IsNullOrWhiteSpace(stringData))
             {
-                return;
+                commandList = JsonConvert.DeserializeObject<List<DetailModel>>(stringData);
             }
-
-            commandList = JsonConvert.DeserializeObject<List<DetailModel>>(stringData);
 
             taskViewModel.LoadData();
         }
@@ -626,6 +624,18 @@ namespace WindowsFormsApp1
             const string githubURL = "https://github.com/HoRockx2/winform_practice";
 
             Process.Start(githubURL);
+        }
+
+        private void OnGoToArchive(object sender, EventArgs e)
+        {
+            Logger.Start();
+
+            var indices = taskListView.SelectedIndices;
+
+            foreach(var index in indices)
+            {
+                Logger.Info(index.ToString());
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace WindowsFormsApp1.viewModel
     {
         private FileIO<TaskModel> taskFileIO = new FileIO<TaskModel>(Assembly.GetExecutingAssembly().GetName().Name, "tasks.dat");
         private ObservableCollection<TaskModel> taskList = new ObservableCollection<TaskModel>();
-        private List<ListViewItem> viewItemList = null;
+        private List<ListViewItem> viewItemList;
         private bool isTaskListUpdated;
 
         public event EventHandler OnTaskListChanged;
@@ -41,6 +41,8 @@ namespace WindowsFormsApp1.viewModel
         public TaskViewModel()
         {
             Logger.Start();
+
+            viewItemList = null;
         }
 
         private void TaskList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
