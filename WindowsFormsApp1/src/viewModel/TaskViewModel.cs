@@ -16,7 +16,7 @@ namespace WindowsFormsApp1.viewModel
     public class TaskViewModel
     {
         private FileIO<TaskModel> taskFileIO = new FileIO<TaskModel>(Assembly.GetExecutingAssembly().GetName().Name, "tasks.dat");
-        private ObservableCollection<TaskModel> taskList = null;
+        private ObservableCollection<TaskModel> taskList = new ObservableCollection<TaskModel>();
         private List<ListViewItem> viewItemList = null;
         private bool isTaskListUpdated;
 
@@ -105,6 +105,7 @@ namespace WindowsFormsApp1.viewModel
             Logger.Start(retModel.ToString());
 
             taskList.Add(retModel);
+            isTaskListUpdated = true;
             NotifyTaskListChanged();
         }
 
@@ -113,6 +114,7 @@ namespace WindowsFormsApp1.viewModel
             Logger.Start(retModel.ToString());
 
             taskList[index] = retModel;
+            isTaskListUpdated = true;
             NotifyTaskListChanged();
         }
 
