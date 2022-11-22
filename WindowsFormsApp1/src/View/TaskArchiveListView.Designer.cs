@@ -33,6 +33,7 @@
             this.Progress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StartDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.backToTaskListButton = new System.Windows.Forms.Button();
+            this.Reported = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // archiveListView
@@ -40,13 +41,15 @@
             this.archiveListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
             this.Progress,
-            this.StartDate});
+            this.StartDate,
+            this.Reported});
             this.archiveListView.FullRowSelect = true;
             this.archiveListView.GridLines = true;
             this.archiveListView.HideSelection = false;
-            this.archiveListView.Location = new System.Drawing.Point(12, 12);
+            this.archiveListView.Location = new System.Drawing.Point(10, 10);
+            this.archiveListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.archiveListView.Name = "archiveListView";
-            this.archiveListView.Size = new System.Drawing.Size(776, 233);
+            this.archiveListView.Size = new System.Drawing.Size(743, 187);
             this.archiveListView.TabIndex = 0;
             this.archiveListView.UseCompatibleStateImageBehavior = false;
             this.archiveListView.View = System.Windows.Forms.View.Details;
@@ -68,22 +71,29 @@
             // 
             // backToTaskListButton
             // 
-            this.backToTaskListButton.Location = new System.Drawing.Point(12, 271);
+            this.backToTaskListButton.Location = new System.Drawing.Point(10, 217);
+            this.backToTaskListButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.backToTaskListButton.Name = "backToTaskListButton";
-            this.backToTaskListButton.Size = new System.Drawing.Size(155, 23);
+            this.backToTaskListButton.Size = new System.Drawing.Size(136, 18);
             this.backToTaskListButton.TabIndex = 1;
             this.backToTaskListButton.Text = "Back To Task List";
             this.backToTaskListButton.UseVisualStyleBackColor = true;
             this.backToTaskListButton.Click += new System.EventHandler(this.OnBackToTaskList);
             // 
+            // Reported
+            // 
+            this.Reported.Text = "Reported";
+            this.Reported.Width = 70;
+            // 
             // TaskArchiveListView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(858, 360);
             this.Controls.Add(this.backToTaskListButton);
             this.Controls.Add(this.archiveListView);
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TaskArchiveListView";
             this.Text = "TaskArchiveListView";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnFormKeyDown);
@@ -98,5 +108,6 @@
         private System.Windows.Forms.ColumnHeader Progress;
         private System.Windows.Forms.ColumnHeader StartDate;
         private System.Windows.Forms.Button backToTaskListButton;
+        private System.Windows.Forms.ColumnHeader Reported;
     }
 }

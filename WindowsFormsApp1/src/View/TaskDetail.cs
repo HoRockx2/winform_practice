@@ -28,6 +28,7 @@ namespace WindowsFormsApp1
             rateOfProgressTrackBar.Value = existedTaskModel?.RateOfProgress ?? 0;
             slideValueTextLabel.Text = (existedTaskModel?.RateOfProgress * 10).ToString() ?? "0";
             reportedCheckBox.Checked = existedTaskModel?.IsReported ?? false;
+            importantTrackBar.Value = existedTaskModel?.RateOfImportant ?? 0;
 
             if (ResultModel != null)
             {
@@ -54,7 +55,8 @@ namespace WindowsFormsApp1
                 Progress = (TaskProgress)progressComboBox.SelectedItem,
                 StartDate = createDateTimePicker.Value.Date,
                 RateOfProgress = rateOfProgressTrackBar.Value,
-                IsReported = reportedCheckBox.Checked
+                IsReported = reportedCheckBox.Checked,
+                RateOfImportant = importantTrackBar.Value
             };
 
             this.DialogResult = DialogResult.OK;

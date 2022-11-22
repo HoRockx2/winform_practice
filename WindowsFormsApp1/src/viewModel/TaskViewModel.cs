@@ -22,7 +22,6 @@ namespace WindowsFormsApp1.viewModel
         private List<ListViewItem> taskViewItemList;
         private List<ListViewItem> archiveViewItemList;
         private bool isTaskListUpdated;
-        private bool isArchiveListUpdated;
 
         public event EventHandler OnTaskListChanged;
 
@@ -32,11 +31,7 @@ namespace WindowsFormsApp1.viewModel
             {
                 Logger.Start();
 
-                if(isArchiveListUpdated || archiveViewItemList == null)
-                {
-                    isArchiveListUpdated = false;
-                    UpdateViewItemList(ref archiveViewItemList, archiveList);
-                }
+                UpdateViewItemList(ref archiveViewItemList, archiveList);
 
                 return archiveViewItemList.ToArray();
             }
@@ -82,7 +77,7 @@ namespace WindowsFormsApp1.viewModel
 
             foreach(var task in originList)
             {
-                string[] row = { task.Title, task.Progress.ToString(), task.StartDateStr, task.IsReported ? "V" : "" };
+                string[] row = { task.Title, task.Progress.ToString(), task.StartDateStr, task.IsReported ? "V" : "", "" };
                 var newListViewItem = new ListViewItem(row);
                 newListViewItem.SubItems[1].BackColor = task.Progress switch
                 {
@@ -92,6 +87,11 @@ namespace WindowsFormsApp1.viewModel
                     TaskProgress.BACK_LOG => Color.LightBlue,
                     _ => throw new Exception("wrong TaskProgress was input")
                 };
+
+                int opacity = Convert.ToInt32(Math.Floor(task.RateOfImportant * 25.5));
+                Logger.Info(opacity.ToString());
+
+                newListViewItem.SubItems[4].BackColor = Color.FromArgb(10, Color.Red);
                 newListViewItem.UseItemStyleForSubItems = false;
 
                 viewItemList.Add(newListViewItem);
@@ -189,7 +189,6 @@ namespace WindowsFormsApp1.viewModel
 
             MoveModels(ref taskList, ref archiveList, indices);
 
-            isArchiveListUpdated = true;
             isTaskListUpdated = true;
 
             NotifyTaskListChanged();
@@ -201,7 +200,6 @@ namespace WindowsFormsApp1.viewModel
 
             MoveModels(ref archiveList, ref taskList, indices);
 
-            isArchiveListUpdated = true;
             isTaskListUpdated = true;
 
             NotifyTaskListChanged();

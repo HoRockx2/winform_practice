@@ -62,12 +62,13 @@ namespace WindowsFormsApp1
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Progress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StartDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Reported = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.taskSearchInputField = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.showArchiveButton = new System.Windows.Forms.Button();
             this.goToArchive = new System.Windows.Forms.Button();
             this.addTask = new System.Windows.Forms.Button();
-            this.Reported = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.R = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -118,7 +119,7 @@ namespace WindowsFormsApp1
             this.textChangedDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.textChangedDisplay.Location = new System.Drawing.Point(12, 8);
             this.textChangedDisplay.Name = "textChangedDisplay";
-            this.textChangedDisplay.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.textChangedDisplay.Padding = new System.Windows.Forms.Padding(10);
             this.textChangedDisplay.Size = new System.Drawing.Size(60, 34);
             this.textChangedDisplay.TabIndex = 2;
             this.textChangedDisplay.Text = "label1";
@@ -150,7 +151,7 @@ namespace WindowsFormsApp1
             this.bottomPanel.Controls.Add(this.panel1);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomPanel.Location = new System.Drawing.Point(3, 262);
-            this.bottomPanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.bottomPanel.Margin = new System.Windows.Forms.Padding(5);
             this.bottomPanel.Name = "bottomPanel";
             this.bottomPanel.Size = new System.Drawing.Size(906, 246);
             this.bottomPanel.TabIndex = 6;
@@ -173,7 +174,7 @@ namespace WindowsFormsApp1
             this.commandsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commandsPanel.Location = new System.Drawing.Point(3, 17);
             this.commandsPanel.Name = "commandsPanel";
-            this.commandsPanel.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.commandsPanel.Padding = new System.Windows.Forms.Padding(10);
             this.commandsPanel.Size = new System.Drawing.Size(900, 108);
             this.commandsPanel.TabIndex = 7;
             // 
@@ -323,7 +324,7 @@ namespace WindowsFormsApp1
             this.commandAndTipTabPage.Controls.Add(this.bottomPanel);
             this.commandAndTipTabPage.Location = new System.Drawing.Point(4, 22);
             this.commandAndTipTabPage.Name = "commandAndTipTabPage";
-            this.commandAndTipTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.commandAndTipTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.commandAndTipTabPage.Size = new System.Drawing.Size(912, 511);
             this.commandAndTipTabPage.TabIndex = 0;
             this.commandAndTipTabPage.Text = "Commands&Tip";
@@ -336,7 +337,7 @@ namespace WindowsFormsApp1
             this.taskTabPage.Controls.Add(this.groupBox3);
             this.taskTabPage.Location = new System.Drawing.Point(4, 22);
             this.taskTabPage.Name = "taskTabPage";
-            this.taskTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.taskTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.taskTabPage.Size = new System.Drawing.Size(912, 511);
             this.taskTabPage.TabIndex = 1;
             this.taskTabPage.Text = "Tasks";
@@ -349,7 +350,8 @@ namespace WindowsFormsApp1
             this.Title,
             this.Progress,
             this.StartDate,
-            this.Reported});
+            this.Reported,
+            this.R});
             this.taskListView.FullRowSelect = true;
             this.taskListView.GridLines = true;
             this.taskListView.HideSelection = false;
@@ -376,6 +378,11 @@ namespace WindowsFormsApp1
             // 
             this.StartDate.Text = "StartDate";
             this.StartDate.Width = 177;
+            // 
+            // Reported
+            // 
+            this.Reported.Text = "Reported";
+            this.Reported.Width = 70;
             // 
             // taskSearchInputField
             // 
@@ -429,10 +436,10 @@ namespace WindowsFormsApp1
             this.addTask.UseVisualStyleBackColor = true;
             this.addTask.Click += new System.EventHandler(this.OnAddTaskButton);
             // 
-            // Reported
+            // R
             // 
-            this.Reported.Text = "Reported";
-            this.Reported.Width = 70;
+            this.R.Text = "R";
+            this.R.Width = 20;
             // 
             // MainForm
             // 
@@ -506,6 +513,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button goToArchive;
         private System.Windows.Forms.Button showArchiveButton;
         private System.Windows.Forms.ColumnHeader Reported;
+        private System.Windows.Forms.ColumnHeader R;
     }
 }
 

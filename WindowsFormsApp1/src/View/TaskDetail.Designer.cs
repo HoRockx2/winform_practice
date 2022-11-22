@@ -39,7 +39,11 @@
             this.rateOfProgressTrackBar = new System.Windows.Forms.TrackBar();
             this.slideValueTextLabel = new System.Windows.Forms.Label();
             this.reportedCheckBox = new System.Windows.Forms.CheckBox();
+            this.importantTrackBar = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rateOfProgressTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importantTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -115,7 +119,7 @@
             // rateOfProgressTrackBar
             // 
             this.rateOfProgressTrackBar.LargeChange = 1;
-            this.rateOfProgressTrackBar.Location = new System.Drawing.Point(186, 401);
+            this.rateOfProgressTrackBar.Location = new System.Drawing.Point(247, 401);
             this.rateOfProgressTrackBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rateOfProgressTrackBar.Name = "rateOfProgressTrackBar";
             this.rateOfProgressTrackBar.Size = new System.Drawing.Size(241, 45);
@@ -125,7 +129,7 @@
             // slideValueTextLabel
             // 
             this.slideValueTextLabel.AutoSize = true;
-            this.slideValueTextLabel.Location = new System.Drawing.Point(440, 412);
+            this.slideValueTextLabel.Location = new System.Drawing.Point(501, 412);
             this.slideValueTextLabel.Name = "slideValueTextLabel";
             this.slideValueTextLabel.Size = new System.Drawing.Size(38, 12);
             this.slideValueTextLabel.TabIndex = 9;
@@ -142,11 +146,40 @@
             this.reportedCheckBox.UseVisualStyleBackColor = true;
             this.reportedCheckBox.CheckedChanged += new System.EventHandler(this.OnReportedCheckChanged);
             // 
+            // importantTrackBar
+            // 
+            this.importantTrackBar.LargeChange = 1;
+            this.importantTrackBar.Location = new System.Drawing.Point(247, 451);
+            this.importantTrackBar.Name = "importantTrackBar";
+            this.importantTrackBar.Size = new System.Drawing.Size(241, 45);
+            this.importantTrackBar.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(191, 412);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "진행도";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(191, 462);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "중요도";
+            // 
             // TaskDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 503);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.importantTrackBar);
             this.Controls.Add(this.reportedCheckBox);
             this.Controls.Add(this.slideValueTextLabel);
             this.Controls.Add(this.rateOfProgressTrackBar);
@@ -163,6 +196,7 @@
             this.Text = "TaskDetail";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.rateOfProgressTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importantTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,5 +215,8 @@
         private System.Windows.Forms.TrackBar rateOfProgressTrackBar;
         private System.Windows.Forms.Label slideValueTextLabel;
         private System.Windows.Forms.CheckBox reportedCheckBox;
+        private System.Windows.Forms.TrackBar importantTrackBar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

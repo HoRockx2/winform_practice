@@ -36,6 +36,8 @@ namespace WindowsFormsApp1.model
             }
         }
 
+        public int RateOfImportant { get; set; }
+
         [JsonIgnore]
         public string StartDateStr
         { 
