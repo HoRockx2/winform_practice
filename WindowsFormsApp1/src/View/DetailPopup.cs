@@ -47,18 +47,18 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
-            CreatenewCommandTextBox();
+            CreateNewCommandTextBox();
         }
 
         private void AddCommandTextBox(string predefinedCommand)
         {
             Logger.Start();
 
-            var newCommandTextBox = CreatenewCommandTextBox();
+            var newCommandTextBox = CreateNewCommandTextBox();
             newCommandTextBox.Text = predefinedCommand;
         }
 
-        private TextBox CreatenewCommandTextBox()
+        private TextBox CreateNewCommandTextBox()
         {
             var newCommandTextBox = new TextBox();
             newCommandTextBox.Tag = commandTextBoxList.Count;

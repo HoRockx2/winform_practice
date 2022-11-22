@@ -38,59 +38,56 @@
             this.progressComboBox = new System.Windows.Forms.ComboBox();
             this.rateOfProgressTrackBar = new System.Windows.Forms.TrackBar();
             this.slideValueTextLabel = new System.Windows.Forms.Label();
+            this.reportedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.rateOfProgressTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 29);
+            this.label1.Location = new System.Drawing.Point(40, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 15);
+            this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "Title";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 130);
+            this.label2.Location = new System.Drawing.Point(40, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 15);
+            this.label2.Size = new System.Drawing.Size(68, 12);
             this.label2.TabIndex = 1;
             this.label2.Text = "Description";
             // 
             // createDateTimePicker
             // 
-            this.createDateTimePicker.Location = new System.Drawing.Point(479, 48);
-            this.createDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.createDateTimePicker.Location = new System.Drawing.Point(419, 38);
             this.createDateTimePicker.Name = "createDateTimePicker";
-            this.createDateTimePicker.Size = new System.Drawing.Size(228, 25);
+            this.createDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.createDateTimePicker.TabIndex = 4;
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(48, 48);
-            this.titleTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.titleTextBox.Location = new System.Drawing.Point(42, 38);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(259, 25);
+            this.titleTextBox.Size = new System.Drawing.Size(227, 21);
             this.titleTextBox.TabIndex = 2;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(48, 149);
-            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.descriptionTextBox.Location = new System.Drawing.Point(42, 119);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(821, 331);
+            this.descriptionTextBox.Size = new System.Drawing.Size(719, 266);
             this.descriptionTextBox.TabIndex = 3;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(48, 501);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.saveButton.Location = new System.Drawing.Point(42, 401);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(86, 29);
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "&Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -99,9 +96,9 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(477, 29);
+            this.label3.Location = new System.Drawing.Point(417, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 15);
+            this.label3.Size = new System.Drawing.Size(71, 12);
             this.label3.TabIndex = 6;
             this.label3.Text = "Create Date";
             // 
@@ -109,36 +106,48 @@
             // 
             this.progressComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.progressComboBox.FormattingEnabled = true;
-            this.progressComboBox.Location = new System.Drawing.Point(480, 106);
-            this.progressComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.progressComboBox.Location = new System.Drawing.Point(420, 85);
             this.progressComboBox.Name = "progressComboBox";
-            this.progressComboBox.Size = new System.Drawing.Size(242, 23);
+            this.progressComboBox.Size = new System.Drawing.Size(212, 20);
             this.progressComboBox.TabIndex = 6;
             this.progressComboBox.SelectedIndexChanged += new System.EventHandler(this.OnComboBoxChanged);
             // 
             // rateOfProgressTrackBar
             // 
             this.rateOfProgressTrackBar.LargeChange = 1;
-            this.rateOfProgressTrackBar.Location = new System.Drawing.Point(212, 501);
+            this.rateOfProgressTrackBar.Location = new System.Drawing.Point(186, 401);
+            this.rateOfProgressTrackBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rateOfProgressTrackBar.Name = "rateOfProgressTrackBar";
-            this.rateOfProgressTrackBar.Size = new System.Drawing.Size(275, 56);
+            this.rateOfProgressTrackBar.Size = new System.Drawing.Size(241, 45);
             this.rateOfProgressTrackBar.TabIndex = 8;
             this.rateOfProgressTrackBar.ValueChanged += new System.EventHandler(this.OnSlideValueChanged);
             // 
             // slideValueTextLabel
             // 
             this.slideValueTextLabel.AutoSize = true;
-            this.slideValueTextLabel.Location = new System.Drawing.Point(503, 515);
+            this.slideValueTextLabel.Location = new System.Drawing.Point(440, 412);
             this.slideValueTextLabel.Name = "slideValueTextLabel";
-            this.slideValueTextLabel.Size = new System.Drawing.Size(45, 15);
+            this.slideValueTextLabel.Size = new System.Drawing.Size(38, 12);
             this.slideValueTextLabel.TabIndex = 9;
             this.slideValueTextLabel.Text = "label4";
             // 
+            // reportedCheckBox
+            // 
+            this.reportedCheckBox.AutoSize = true;
+            this.reportedCheckBox.Location = new System.Drawing.Point(597, 411);
+            this.reportedCheckBox.Name = "reportedCheckBox";
+            this.reportedCheckBox.Size = new System.Drawing.Size(74, 16);
+            this.reportedCheckBox.TabIndex = 10;
+            this.reportedCheckBox.Text = "Reported";
+            this.reportedCheckBox.UseVisualStyleBackColor = true;
+            this.reportedCheckBox.CheckedChanged += new System.EventHandler(this.OnReportedCheckChanged);
+            // 
             // TaskDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 562);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.reportedCheckBox);
             this.Controls.Add(this.slideValueTextLabel);
             this.Controls.Add(this.rateOfProgressTrackBar);
             this.Controls.Add(this.progressComboBox);
@@ -150,7 +159,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TaskDetail";
             this.Text = "TaskDetail";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
@@ -172,5 +180,6 @@
         private System.Windows.Forms.ComboBox progressComboBox;
         private System.Windows.Forms.TrackBar rateOfProgressTrackBar;
         private System.Windows.Forms.Label slideValueTextLabel;
+        private System.Windows.Forms.CheckBox reportedCheckBox;
     }
 }
