@@ -32,8 +32,8 @@
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Progress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StartDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.backToTaskListButton = new System.Windows.Forms.Button();
             this.Reported = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.backToTaskListButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // archiveListView
@@ -53,6 +53,8 @@
             this.archiveListView.TabIndex = 0;
             this.archiveListView.UseCompatibleStateImageBehavior = false;
             this.archiveListView.View = System.Windows.Forms.View.Details;
+            this.archiveListView.DoubleClick += new System.EventHandler(this.OnArchiveTaskListDoubleClick);
+            this.archiveListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnArchiveTaskListKeyDown);
             // 
             // Title
             // 
@@ -69,6 +71,11 @@
             this.StartDate.Text = "StartDate";
             this.StartDate.Width = 177;
             // 
+            // Reported
+            // 
+            this.Reported.Text = "Reported";
+            this.Reported.Width = 70;
+            // 
             // backToTaskListButton
             // 
             this.backToTaskListButton.Location = new System.Drawing.Point(10, 217);
@@ -79,11 +86,6 @@
             this.backToTaskListButton.Text = "Back To Task List";
             this.backToTaskListButton.UseVisualStyleBackColor = true;
             this.backToTaskListButton.Click += new System.EventHandler(this.OnBackToTaskList);
-            // 
-            // Reported
-            // 
-            this.Reported.Text = "Reported";
-            this.Reported.Width = 70;
             // 
             // TaskArchiveListView
             // 

@@ -69,5 +69,45 @@ namespace WindowsFormsApp1
                 this.Hide();
             }
         }
+
+
+
+        private void ShowTaskDetailFromTaskList()
+        {
+            Logger.Info();
+
+            var indices = archiveListView.SelectedIndices;
+
+            if(indices.Count == 1)
+            {
+                var taskDetail = viewModel.GetTaskAt(indices[0]);
+                using(var taskDetailPopup = new TaskDetail(taskDetail))
+                {
+                    var ret = taskDetailPopup.ShowDialog();
+
+                    switch (ret)
+                    {
+                        case DialogResult.OK:
+                            Logger.Info("task detail dialog result is ok");
+                            viewModel.OnOKResultOfTaskDetailPopup(taskDetail, indices[0]);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void OnArchiveTaskListDoubleClick(object sender, EventArgs e)
+        {
+            Logger.Info();
+
+            ShowTaskDetailFromTaskList();
+        }
+
+        private void OnArchiveTaskListKeyDown(object sender, KeyEventArgs e)
+        {
+            Logger.Info();
+
+            ShowTaskDetailFromTaskList();
+        }
     }
 }

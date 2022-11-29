@@ -421,12 +421,7 @@ namespace WindowsFormsApp1
 
             if(e.KeyCode == Keys.Enter)
             {
-                var indices = taskListView.SelectedIndices;
-
-                if (indices.Count > 0)
-                {
-                    ShowTaskDetailPopupWithModel(indices[0]);
-                }
+                ShowTaskDetailFromTaskList();
             }
         }
 
@@ -466,9 +461,16 @@ namespace WindowsFormsApp1
         {
             Logger.Start();
 
+            ShowTaskDetailFromTaskList();
+        }
+
+        private void ShowTaskDetailFromTaskList()
+        {
+            Logger.Start();
+
             var indices = taskListView.SelectedIndices;
 
-            if(indices.Count > 0)
+            if (indices.Count == 1)
             {
                 ShowTaskDetailPopupWithModel(indices[0]);
             }

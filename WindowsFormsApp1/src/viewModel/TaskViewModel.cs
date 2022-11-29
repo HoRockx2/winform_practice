@@ -102,12 +102,26 @@ namespace WindowsFormsApp1.viewModel
         {
             Logger.Start();
 
-            if (index < 0 || taskList.Count <= index)
+            IndexValidationCheck(index, ref taskList);
+
+            return taskList[index];
+        }
+
+        public TaskModel GetArchiveTaskAt(int index)
+        {
+            Logger.Start();
+
+            IndexValidationCheck(index, ref archiveList);
+
+            return archiveList[index];
+        }
+
+        private void IndexValidationCheck(int index, ref List<TaskModel> list)
+        {
+            if (index < 0 || list.Count <= index)
             {
                 throw new Exception($"index is wrong: [{index}]");
             }
-
-            return taskList[index];
         }
 
         public void LoadData()
