@@ -69,6 +69,7 @@ namespace WindowsFormsApp1
             this.showArchiveButton = new System.Windows.Forms.Button();
             this.goToArchive = new System.Windows.Forms.Button();
             this.addTask = new System.Windows.Forms.Button();
+            this.OptionalT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -351,7 +352,8 @@ namespace WindowsFormsApp1
             this.Progress,
             this.StartDate,
             this.Reported,
-            this.R});
+            this.R,
+            this.OptionalT});
             this.taskListView.FullRowSelect = true;
             this.taskListView.GridLines = true;
             this.taskListView.HideSelection = false;
@@ -441,6 +443,11 @@ namespace WindowsFormsApp1
             this.addTask.UseVisualStyleBackColor = true;
             this.addTask.Click += new System.EventHandler(this.OnAddTaskButton);
             // 
+            // OptionalT
+            // 
+            this.OptionalT.Text = "OptionalText";
+            this.OptionalT.Width = 100;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -514,6 +521,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button showArchiveButton;
         private System.Windows.Forms.ColumnHeader Reported;
         private System.Windows.Forms.ColumnHeader R;
+        private System.Windows.Forms.ColumnHeader OptionalT;
     }
 }
 

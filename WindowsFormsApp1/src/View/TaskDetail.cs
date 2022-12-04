@@ -29,6 +29,7 @@ namespace WindowsFormsApp1
             slideValueTextLabel.Text = (existedTaskModel?.RateOfProgress * 10).ToString() ?? "0";
             reportedCheckBox.Checked = existedTaskModel?.IsReported ?? false;
             importantTrackBar.Value = existedTaskModel?.RateOfImportant ?? 0;
+            optionalTextBox.Text = existedTaskModel?.additionalText ?? "";
 
             if (ResultModel != null)
             {
@@ -56,7 +57,8 @@ namespace WindowsFormsApp1
                 StartDate = createDateTimePicker.Value.Date,
                 RateOfProgress = rateOfProgressTrackBar.Value,
                 IsReported = reportedCheckBox.Checked,
-                RateOfImportant = importantTrackBar.Value
+                RateOfImportant = importantTrackBar.Value,
+                additionalText = optionalTextBox.Text
             };
 
             this.DialogResult = DialogResult.OK;
@@ -120,6 +122,31 @@ namespace WindowsFormsApp1
             if(sender is CheckBox checkBox)
             {
 
+            }
+        }
+
+        private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            Logger.Start($"{e.Control} || {e.KeyData} || {e.KeyValue}");
+
+
+            if(e.Control && e.KeyValue == ((int)Keys.D))
+            {
+                Logger.Info(DateTime.Now.ToShortDateString());
+
+                InsertNow(sender);
+            }
+        }
+
+        private void InsertNow(object textBox)
+        {
+            Logger.Start();
+
+            if(textBox is TextBox _tb)
+            {
+                int currentPos = _tb.SelectionStart;
+                _tb.Text += DateTime.Now.ToShortDateString();
+                _tb.SelectionStart = currentPos;
             }
         }
     }

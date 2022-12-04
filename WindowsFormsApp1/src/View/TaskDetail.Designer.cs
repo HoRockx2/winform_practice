@@ -42,6 +42,8 @@
             this.importantTrackBar = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.optionalTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rateOfProgressTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importantTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -75,8 +77,9 @@
             // 
             this.titleTextBox.Location = new System.Drawing.Point(42, 38);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(227, 21);
+            this.titleTextBox.Size = new System.Drawing.Size(301, 21);
             this.titleTextBox.TabIndex = 2;
+            this.titleTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnTextBoxKeyDown);
             // 
             // descriptionTextBox
             // 
@@ -86,6 +89,7 @@
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(719, 266);
             this.descriptionTextBox.TabIndex = 3;
+            this.descriptionTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnTextBoxKeyDown);
             // 
             // saveButton
             // 
@@ -172,11 +176,30 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "중요도";
             // 
+            // optionalTextBox
+            // 
+            this.optionalTextBox.Location = new System.Drawing.Point(158, 65);
+            this.optionalTextBox.Name = "optionalTextBox";
+            this.optionalTextBox.Size = new System.Drawing.Size(185, 21);
+            this.optionalTextBox.TabIndex = 13;
+            this.optionalTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnTextBoxKeyDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(72, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 12);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Optional Text";
+            // 
             // TaskDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 503);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.optionalTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.importantTrackBar);
@@ -218,5 +241,7 @@
         private System.Windows.Forms.TrackBar importantTrackBar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox optionalTextBox;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -18,6 +18,8 @@ namespace WindowsFormsApp1.model
         public TaskProgress Progress { get; set; }
         public DateTime StartDate { get; set; }
 
+        public string additionalText { get; set; }
+
         public bool IsReported { get; set; } = false;
 
         private int rateOfProgress;
