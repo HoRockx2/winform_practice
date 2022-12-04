@@ -63,12 +63,12 @@ namespace WindowsFormsApp1
             this.Progress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StartDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Reported = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.R = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.taskSearchInputField = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.showArchiveButton = new System.Windows.Forms.Button();
             this.goToArchive = new System.Windows.Forms.Button();
             this.addTask = new System.Windows.Forms.Button();
-            this.R = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -372,17 +372,22 @@ namespace WindowsFormsApp1
             // Progress
             // 
             this.Progress.Text = "Progress";
-            this.Progress.Width = 96;
+            this.Progress.Width = 130;
             // 
             // StartDate
             // 
             this.StartDate.Text = "StartDate";
-            this.StartDate.Width = 177;
+            this.StartDate.Width = 97;
             // 
             // Reported
             // 
             this.Reported.Text = "Reported";
-            this.Reported.Width = 70;
+            this.Reported.Width = 97;
+            // 
+            // R
+            // 
+            this.R.Text = "R";
+            this.R.Width = 20;
             // 
             // taskSearchInputField
             // 
@@ -435,11 +440,6 @@ namespace WindowsFormsApp1
             this.addTask.Text = "&Add Task";
             this.addTask.UseVisualStyleBackColor = true;
             this.addTask.Click += new System.EventHandler(this.OnAddTaskButton);
-            // 
-            // R
-            // 
-            this.R.Text = "R";
-            this.R.Width = 20;
             // 
             // MainForm
             // 

@@ -77,7 +77,7 @@ namespace WindowsFormsApp1.viewModel
 
             foreach(var task in originList)
             {
-                string[] row = { task.Title, task.Progress.ToString(), task.StartDateStr, task.IsReported ? "V" : "", "" };
+                string[] row = { task.Title, $"{task.Progress.ToString()} ({task.RateOfProgress * 10})" , task.StartDateStr, task.IsReported ? "V" : "", "" };
                 var newListViewItem = new ListViewItem(row);
                 newListViewItem.SubItems[1].BackColor = task.Progress switch
                 {
